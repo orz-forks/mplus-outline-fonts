@@ -1,6 +1,6 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 19-Jan-2005.
+# Last Change: 22-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package EPSCut;
@@ -12,7 +12,7 @@ my $RXFLT = "-?\\d+(\\.\\d+)?";
 sub cut
 {
     my $nunit = 100;
-    return &cut2(@_[0..3], $nunit, $nunit, $OUT_SQUARE_SIZE / $nunit);
+    return &cut_rectangle(@_[0..3], $nunit, $nunit, $OUT_SQUARE_SIZE / $nunit);
 }
 
 # Cut and get partial EPS in rectangle area from eps.
