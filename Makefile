@@ -1,11 +1,13 @@
 # vim:set ts=8 sts=8 sw=8 tw=0:
 # 
-# Last Change: 23-Jan-2005.
+# Last Change: 24-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 default: medium
 
-all: thin light regular medium bold heavy black
+fix: thin light regular medium bold heavy black
+
+all: fix
 
 thin: mplus_skeleton.sfd
 	sh scripts/build_ttf.sh thin
