@@ -1,0 +1,18 @@
+#!/usr/local/bin/pfaedit -script
+
+filename = ""
+if ($argc > 1)
+    filename = $argv[1]
+endif
+if (filename == "")
+    Print("ERROR: Require filename.")
+endif
+
+input = filename + ".sfd"
+output = filename + ".otf"
+
+Print("Loading: " + input);
+Open(input)
+Print("Writing: " + output);
+Generate(output, "", 0)
+

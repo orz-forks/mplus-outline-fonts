@@ -1,0 +1,10 @@
+#!/bin/sh
+
+name=mplus_outline_fonts
+date=`date +%Y%m%d`
+namedate=$name-$date
+
+cd ..
+tar cf $namedate.tar $name
+bzip2 $namedate.tar
+
