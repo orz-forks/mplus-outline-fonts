@@ -3,7 +3,11 @@
 # Last Change: 09-Jun-2004.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
-default: mplus_j12b.bdf mplus_j10b.bdf
+default: jbold
+
+all: jbold
+
+jbold: mplus_j12b.bdf mplus_j10b.bdf
 
 mplus_j12b.bdf: mplus_j12r.bdf
 	perl ../scripts/mkbold.pl mplus_j12r.bdf > $@
