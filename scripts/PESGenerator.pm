@@ -1,6 +1,6 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-Apr-2004.
+# Last Change: 20-May-2004.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package PESGenerator;
@@ -14,6 +14,7 @@ sub new
 	-offset => [0, 0],
 	-descent => 800,
 	-ascent => 200,
+	-simplify => 0,
 	@_,
     );
     my $this = bless {
@@ -27,6 +28,7 @@ sub new
 	offset => $param{'-offset'},
 	descent => $param{'-descent'},
 	ascent => $param{'-ascent'},
+	simplify => $param{'-simplify'},
 	eps_files => [],
     }, $class;
     return $this;
@@ -55,8 +57,16 @@ sub save
     if (0 >= @{$this->{eps_files}}) {
 	return 0;
     }
+    if ($this->{input_sfd} ne '' and -r $this->{input_sfd}) {
+	printf OUT "Open(\"%s\")\n", $this->{input_sfd};
+    } else {
+	print OUT <<"__EOB__";
+New()
+Reencode("iso10646-1")
+SetCharCnt(65536)
+__EOB__
+    }
     print OUT <<"__EOB__";
-Open("$this->{input_sfd}")
 # Set panose (workaround)
 panose = Array(10)
 panose[0] = 2; panose[1] = 0; panose[2] = 6; panose[3] = 9; panose[4] = 6
@@ -87,6 +97,10 @@ __EOB__
 	printf OUT "Select(0x%s)\n", $code;
 	printf OUT "Clear()\n";
 	printf OUT "Import(\"%s\")\n", $eps_file;
+	if ($this->{simplify}) {
+	    printf OUT "RemoveOverlap()\n";
+	    printf OUT "Simplify()\n";
+	}
 	printf OUT "Move(%d, %d)\n", $this->{offset}->[0], $this->{offset}->[1];
 	printf OUT "SetWidth(%d)\n", $width;
     }

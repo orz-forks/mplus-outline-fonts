@@ -1,9 +1,33 @@
 #!/usr/bin/perl
+# vim:set ts=8 sts=4 sw=4 tw=0:
+#
+# Last Change: 20-May-2004.
+# Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
+use strict;
+use lib "scripts";
+use Carp;
+use Data::Dumper;
+use File::Basename;
+use File::Path;
+use UCSTable;
+use PESGenerator;
+
+$config::FONT_BASENAME = 'mplus';
+$config::FONT_NAME = sprintf("%s-skeleton", $config::FONT_BASENAME);
+$config::FONT_WEIGHT = 'middle';
+$config::FONT_COPYRIGHT = 'Copyright (C) 2004 M+ Font Project';
+$config::FONT_SKELETON = 'mplus_skeleton.sfd';
+
+my ($DEBUG, $VERBOSE) = (0, 0);
 my $OUTDIR = "output.d";
-my $WIDTH = 500;
-my $HEIGHT = 1000;
+my @CELLSIZE = (500, 1000);
 my $SCALE = 76;
+my ($SCALE_X, $SCALE_Y) = (0, 0);
+my @files;
+my %generated;
+
+my ($WIDTH, $HEIGHT);
 
 # Parse arguments
 for (my $i = 0; $i < @ARGV; ++$i) {
@@ -18,34 +42,137 @@ for (my $i = 0; $i < @ARGV; ++$i) {
 	    $SCALE = $ARGV[++$i] + 0;
 	} elsif ($c eq "-o" and $next) {
 	    $OUTDIR = $ARGV[++$i];
+	} elsif ($c eq "-v") {
+	    ++$VERBOSE;
 	} else {
-	    printf STDERR "  Ignored argument: %s\n", $c;
+	    printf STDERR "  Ignored option: %s\n", $c;
 	}
+    } elsif (-f $c and -r _) {
+	push @files, $c;
     } else {
 	printf STDERR "  Ignored argument: %s\n", $c;
     }
 }
 
-mkdir $OUTDIR, 0755 if not -e $OUTDIR;
+mkpath([$OUTDIR], 0, 0755) if not -e $OUTDIR;
+$SCALE_X = $SCALE if $SCALE_X <= 0;
+$SCALE_Y = $SCALE if $SCALE_Y <= 0;
 
-my $IN = \*STDIN;
-while (<$IN>) {
-    chomp;
-    if (m/^STARTCHAR\s+0x([[:xdigit:]]{4})/) {
-	my $code = sprintf("%04X", hex($1));
-	my @data;
-	while (<$IN>) {
-	    chomp;
-	    push @data, $_;
-	    last if m/^ENDCHAR/;
+my $pes = new PESGenerator(
+    -basename => $config::FONT_BASENAME,
+    -fontname => $config::FONT_NAME,
+    -weight => $config::FONT_WEIGHT,
+    -copyright => $config::FONT_COPYRIGHT,
+    #-input_sfd => $input_sfd,
+    -output_sfd => 'test.sfd',
+    -offset => [0, -200],
+    -simplify => 1,
+);
+for my $f (@files) {
+    $WIDTH = 0;
+    $HEIGHT = 0;
+    printf "Input: %s\n", $f;
+    open IN, $f;
+    &proc_file($f, \*IN, $pes);
+    close IN;
+}
+$pes->save('test.pe');
+exit 0;
+
+sub check_header
+{
+    my $IN = shift;
+    my $head = {
+	cell_width => 1,
+	encode => '',
+    };
+    # Process header.
+    while (<$IN>) {
+	if (m/^CHARS\b/) {
+	    last;
+	} elsif (m/^FONTBOUNDINGBOX\s+(\d+)\s+(\d+)/) {
+	    # Calc cell-width
+	    my ($w, $h) = ($1, $2);
+	    if ($h / $w <= 1.5) {
+		$head->{cell_width} => 2;
+	    }
+	} elsif (m/^FONT\s+(.*)$/) {
+	    # Determine encoding
+	    my @fn = split m/-/, $1;
+	    my $encode = join("-", @fn[13, 14]);
+	    if ($encode =~ m/8859-1/i) {
+		$encode = "8859-1";
+	    } elsif ($encode =~ m/jisx0201/i) {
+		$encode = "JISX0201";
+	    } elsif ($encode =~ m/jisx0208/i) {
+		$encode = "JISX0208";
+	    }
+	    $head->{encode} = $encode;
 	}
-	&proc_glyph($code, \@data);
+    }
+    return $head;
+}
+
+sub proc_startchar
+{
+    my $ecode = shift;
+    my $filename = shift;
+    my $IN = shift;;
+    my $enc_table = shift;
+    # Correct bitmap data
+    my @data;
+    while (<$IN>) {
+	chomp;
+	push @data, $_;
+	last if m/^ENDCHAR/;
+    }
+    return '' if eof $IN;
+    # Initialize glyph conversion parameters
+    my $ucode = $enc_table->get(sprintf("%04X", $ecode));
+    if ($ucode == 0) {
+	printf("  Skipped: u%04X is not mapped to UNICODE\n",
+	    $ecode) if $VERBOSE > 1;
+	return '';
+    }
+    $ucode = sprintf("u%04X", $ucode);
+    my $out = join("/", $OUTDIR, substr($ucode, 0, 3), $ucode.".eps");
+    if (exists $generated{$out}) {
+	printf("  Skipped: u%04X already generated in file %s\n",
+	    $ecode, $generated{$out}) if $VERBOSE > 1;
+	return '';
+    }
+    &proc_glyph($out, \@data);
+    $generated{$out} = $filename;
+    return $out;
+}
+
+sub proc_file
+{
+    my $filename = shift;
+    my $IN = shift;
+    my $pes = shift;
+    my $head = &check_header($IN);
+    # Initialize font conversion parameters.
+    return if eof $IN or $head->{encode} eq '';
+    my $enc_table = new UCSTable($head->{encode});
+    $WIDTH = $head->{cell_width} * $CELLSIZE[0];
+    $HEIGHT = $CELLSIZE[1];
+    printf "  Encoding: %s\n", $head->{encode} if $VERBOSE > 0;
+    printf "  Width-Height %d,%d\n", $WIDTH, $HEIGHT if $VERBOSE > 0;
+    # Process bitmap data body.
+    while (<$IN>) {
+	chomp;
+	if (m/^STARTCHAR\s+0x([[:xdigit:]]{4})/) {
+	    my $r = &proc_startchar(hex($1), $filename, $IN, $enc_table);
+	    next if $r eq '';
+	    $pes->add($r);
+	}
     }
 }
 
 sub proc_glyph
 {
-    my $code = shift;
+    my $filename = shift;
     my $data = shift;
     my ($w, $h);
     my @hex;
@@ -65,9 +192,8 @@ sub proc_glyph
 	}
     }
 
-    my $dir = substr $code, 0, 2;
-    my $dirname = join("/", $OUTDIR, $dir);
-    my $filename = join("/", $OUTDIR, $dir, $code.".eps");
+    # Assure directory
+    my $dirname = dirname($filename);
     mkdir $dirname, 0755 if not -d $dirname;
 
     open OUT, ">".$filename;
@@ -80,7 +206,7 @@ sub proc_glyph
   newpath 0 0 moveto 0 1 lineto 1 1 lineto 1 0 lineto closepath fill
   neg exch neg exch translate
 } def
-$SCALE $SCALE scale
+$SCALE_X $SCALE_Y scale
 END
     my $y;
     for ($y = 0; $y < $h; ++$y) {
@@ -100,4 +226,14 @@ END
 	}
     }
     close OUT;
+}
+
+sub get_mtime
+{
+    my $path = shift;
+    if (-e $path) {
+	return (stat $path)[9];
+    } else {
+	return 0;
+    }
 }
