@@ -41,9 +41,9 @@ sub cut_rectangle
 	{
 	    &print_eps("%%BoundingBox: 0 0 $size[0] $size[1]\n");
 	}
-	elsif (m/\d+ setlinewidth/)
+	elsif (m/\bsetlinewidth\b/)
 	{
-	    s//0 setlinewidth/;
+	    s//dup 1 le { pop 0 } if setlinewidth/g;
 	    &print_eps($_);
 	}
 	else
