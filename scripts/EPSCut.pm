@@ -1,6 +1,6 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 22-Jan-2005.
+# Last Change: 23-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package EPSCut;
@@ -37,9 +37,17 @@ sub cut_rectangle
     binmode OUT;
     # Skip header.  And replace BoundingBox entry.
     while (<IN>) {
-	if (m/^%%BoundingBox:/) {
+	if (m/^%%BoundingBox:/)
+	{
 	    &print_eps("%%BoundingBox: 0 0 $size[0] $size[1]\n");
-	} else {
+	}
+	elsif (m/\d+ setlinewidth/)
+	{
+	    s//0 setlinewidth/;
+	    &print_eps($_);
+	}
+	else
+	{
 	    &print_eps($_);
 	}
 	last if $_ =~ m/^%%EndSetup/;
