@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-May-2004.
+# Last Change: 23-May-2004.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 use strict;
@@ -13,11 +13,9 @@ use File::Path;
 use UCSTable;
 use PESGenerator;
 
-$config::FONT_BASENAME = 'mplus';
-$config::FONT_NAME = sprintf("%s-skeleton", $config::FONT_BASENAME);
+$config::FONT_BASENAME = 'mplus_skeleton';
 $config::FONT_WEIGHT = 'middle';
 $config::FONT_COPYRIGHT = 'Copyright (C) 2004 M+ Font Project';
-$config::FONT_SKELETON = 'mplus_skeleton.sfd';
 
 my ($DEBUG, $VERBOSE) = (0, 0);
 my $OUTDIR = "output.d";
@@ -42,6 +40,14 @@ for (my $i = 0; $i < @ARGV; ++$i) {
 	    $SCALE = $ARGV[++$i] + 0;
 	} elsif ($c eq "-o" and $next) {
 	    $OUTDIR = $ARGV[++$i];
+	} elsif ($c eq "-fb" and $next) {
+	    $config::FONT_BASENAME = $ARGV[++$i];
+	} elsif ($c eq "-fn" and $next) {
+	    $config::FONT_NAME = $ARGV[++$i];
+	} elsif ($c eq "-fw" and $next) {
+	    $config::FONT_WEIGHT = $ARGV[++$i];
+	} elsif ($c eq "-fc" and $next) {
+	    $config::FONT_COPYRIGHT = $ARGV[++$i];
 	} elsif ($c eq "-v") {
 	    ++$VERBOSE;
 	} else {
@@ -54,17 +60,22 @@ for (my $i = 0; $i < @ARGV; ++$i) {
     }
 }
 
+if (not defined $config::FONT_NAME) {
+    $config::FONT_NAME = sprintf("%s-%s", $config::FONT_BASENAME, $config::FONT_WEIGHT);
+}
+$config::FONT_OUTPUTFILE = sprintf("%s.sfd", $config::FONT_NAME);
+
 mkpath([$OUTDIR], 0, 0755) if not -e $OUTDIR;
 $SCALE_X = $SCALE if $SCALE_X <= 0;
 $SCALE_Y = $SCALE if $SCALE_Y <= 0;
 
 my $pes = new PESGenerator(
     -basename => $config::FONT_BASENAME,
-    -fontname => $config::FONT_NAME,
     -weight => $config::FONT_WEIGHT,
+    -fontname => $config::FONT_NAME,
     -copyright => $config::FONT_COPYRIGHT,
     #-input_sfd => $input_sfd,
-    -output_sfd => 'test.sfd',
+    -output_sfd => $config::FONT_OUTPUTFILE,
     -offset => [0, -200],
     -simplify => 1,
 );
@@ -76,7 +87,7 @@ for my $f (@files) {
     &proc_file($f, \*IN, $pes);
     close IN;
 }
-$pes->save('test.pe');
+$pes->save(sprintf("%s.pe", $config::FONT_NAME));
 exit 0;
 
 sub check_header

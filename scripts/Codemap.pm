@@ -1,6 +1,6 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-Apr-2004.
+# Last Change: 25-May-2004.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package Codemap;
@@ -74,27 +74,47 @@ sub _map2ucs
     my @ucs_array;
     if (not exists $this->{ucstable}) {
 	for my $code (@$codes) {
-	    if ($code =~ m/^0x([[:xdigit:]]+)(u)?$/ and defined $2) {
-		push @ucs_array, sprintf('u%04x', hex($1));
-	    } else {
-		$this->_maperror($code);
+	    my @mapped;
+	    for my $code2 (split m/,/, $code)
+	    {
+		if ($code2 =~ m/^0x([[:xdigit:]]+)(u)?$/ and defined $2) {
+		    push @mapped, sprintf('u%04x', hex($1));
+		} else {
+		    $this->_maperror($code2);
+		}
+	    }
+	    my $map = scalar(@mapped);
+	    if ($map == 1) {
+		push @ucs_array, $mapped[0];
+	    } elsif ($map > 1) {
+		push @ucs_array, \@mapped;
 	    }
 	}
     } else {
 	for my $code (@$codes) {
-	    if ($code =~ m/^0x([[:xdigit:]]+)(u)?$/) {
-		if (defined $2) {
-		    push @ucs_array, sprintf('u%04x', hex($1));
-		} else {
-		    my $ucs = $this->{ucstable}->get($1);
-		    if (defined $ucs) {
-			push @ucs_array, sprintf('u%04x', $ucs);
+	    my @mapped;
+	    for my $code2 (split m/,/, $code)
+	    {
+		if ($code2 =~ m/^0x([[:xdigit:]]+)(u)?$/) {
+		    if (defined $2) {
+			push @mapped, sprintf('u%04x', hex($1));
 		    } else {
-			$this->_maperror($code);
+			my $ucs = $this->{ucstable}->get($1);
+			if (defined $ucs) {
+			    push @mapped, sprintf('u%04x', $ucs);
+			} else {
+			    $this->_maperror($code2);
+			}
 		    }
+		} else {
+		    $this->_maperror($code2);
 		}
-	    } else {
-		$this->_maperror($code);
+	    }
+	    my $map = scalar(@mapped);
+	    if ($map == 1) {
+		push @ucs_array, $mapped[0];
+	    } elsif ($map > 1) {
+		push @ucs_array, \@mapped;
 	    }
 	}
     }

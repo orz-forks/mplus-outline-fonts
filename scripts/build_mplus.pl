@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-Apr-2004.
+# Last Change: 25-May-2004.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 use strict;
@@ -182,6 +182,28 @@ sub get_datadirs
     return \@datadirs;
 }
 
+sub generate_eps
+{
+    my $mtime_table = shift;
+    my $weight = shift;
+    my $src = shift;
+    my $src_mtime = shift;
+    my $col = shift;
+    my $code = shift;
+    my $dst = &get_output($WORKDIR, $weight, $code);
+    my $dst_mtime = &get_mtime($dst);
+    my $row = $WEIGHT_TABLE{$weight};
+    if ($dst_mtime < $src_mtime) {
+	&ensure_basedir($dst);
+	&EPSCut::cut($src, $dst, $row, $col);
+	$dst_mtime = &get_mtime($dst);
+	&log_writeline(3, "$dst updated");
+    } else {
+	&log_writeline(3, "$dst skipped");
+    }
+    $mtime_table->{$dst} = $dst_mtime;
+}
+
 sub generate_eps_for_weight
 {
     my $codemaps = shift;
@@ -200,18 +222,13 @@ sub generate_eps_for_weight
 	    # Output all codes in combined EPS.
 	    for (my $col = 0; $col < @$codes; ++$col) {
 		my $code = $codes->[$col];
-		my $dst = &get_output($WORKDIR, $weight, $code);
-		my $dst_mtime = &get_mtime($dst);
-		my $row = $WEIGHT_TABLE{$weight};
-		if ($dst_mtime < $src_mtime) {
-		    &ensure_basedir($dst);
-		    &EPSCut::cut($src, $dst, $row, $col);
-		    $dst_mtime = &get_mtime($dst);
-		    &log_writeline(3, "$dst updated");
+		if (ref($code) eq 'ARRAY') {
+		    for my $c (@$code) {
+			&generate_eps(\%mtime_table, $weight, $src, $src_mtime, $col, $c);
+		    }
 		} else {
-		    &log_writeline(3, "$dst skipped");
+		    &generate_eps(\%mtime_table, $weight, $src, $src_mtime, $col, $code);
 		}
-		$mtime_table{$dst} = $dst_mtime;
 	    }
 	    &log_unindent();
 	}
