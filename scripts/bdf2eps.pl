@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 23-May-2004.
+# Last Change: 24-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 use strict;
@@ -13,10 +13,8 @@ use File::Path;
 use UCSTable;
 use PESGenerator;
 
-$config::FONT_BASENAME = 'mplus_skeleton';
-$config::FONT_WEIGHT = 'middle';
-$config::FONT_COPYRIGHT = 'Copyright (C) 2004 M+ Font Project';
-
+my @today = localtime;
+my ($YEAR, $MONTH, $DAY) = ($today[5] + 1900, $today[4] + 1, $today[3]);
 my ($DEBUG, $VERBOSE) = (0, 0);
 my $OUTDIR = "output.d";
 my @CELLSIZE = (500, 1000);
@@ -26,6 +24,9 @@ my @files;
 my %generated;
 
 my ($WIDTH, $HEIGHT);
+$config::FONT_BASENAME = 'mplus_skeleton';
+$config::FONT_WEIGHT = 'middle';
+$config::FONT_COPYRIGHT = "Copyright (C) $YEAR M+ Font Project";
 
 # Parse arguments
 for (my $i = 0; $i < @ARGV; ++$i) {
@@ -105,7 +106,7 @@ sub check_header
 	    # Calc cell-width
 	    my ($w, $h) = ($1, $2);
 	    if ($h / $w <= 1.5) {
-		$head->{cell_width} => 2;
+		$head->{cell_width} = 2;
 	    }
 	} elsif (m/^FONT\s+(.*)$/) {
 	    # Determine encoding

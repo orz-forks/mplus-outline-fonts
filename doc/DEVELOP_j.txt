@@ -1,6 +1,6 @@
 開発者向けドキュメント
 
-						     Last Change: 25-Jan-2004.
+						     Last Change: 24-Jan-2005.
 
 * ディレクトリ構成
   + bdf.d	スケルトン作成用BDF(M+ bitmap 2.1.4より)
@@ -23,5 +23,10 @@
     でコメントを入れることはできない。
   + eolcheck.pl
     指定したファイルの改行コードをLFに統一する。
+
+* 注意
+  scripts/build_skelton.shは非常に重い。生成されるファイル数が非常に多いのに加
+  えて、sfdの生成にいたってはメモリも馬鹿食い、P4-3.2GHzでも10分近くを要する。
+  実行にはくれぐれも注意のこと。
 
  vim:set ts=8 sts=2 sw=2 tw=78 ft=memo:
