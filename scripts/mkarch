@@ -1,10 +1,73 @@
 #!/bin/sh
+# vim:set ts=8 sts=2 sw=2 tw=0:
+#
+# Last Change:	03-Jun-2004.
+# Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
 
-name=mplus_outline_fonts
-date=`date +%Y%m%d`
-namedate=$name-$date
+### FUNCTIONS
 
-cd ..
-tar cf $namedate.tar $name
-bzip2 $namedate.tar
+make_archive ()
+{
+  cd ..
+  if [ ! -e "$outname" ] ; then
+    case $ext in
+      tar.bz2)
+	tar cf ${outname%.bz2} $name
+	bzip2 -9 ${outname%.bz2}
+	;;
+      tar.gz)
+	tar cf ${outname%.gz} $name
+	gzip -9 ${outname%gz}
+	;;
+      zip)
+	zip -r -9 ${outname} $name
+	;;
+      *)
+	echo "Unsupported archive type: $ext"
+	;;
+    esac
+  else
+    echo "Can't create ${outname}"
+  fi
+}
+
+rotate_oldfile ()
+{
+  num=0
+  while true ; do
+    dest="${name}-${version}-${num}.${ext}"
+    if [ ! -e "../$dest" ] ; then
+      break
+    fi
+    num=`expr $num + 1`
+  done 
+  mv "../${outname}" "../${dest}"
+}
+
+### MAIN PROGRAM
+
+# Parse options.
+while getopts 'e:v' opt ; do
+  case $opt in
+    'e') ext="$OPTARG" ;;
+    'v') verbose="on" ;;
+  esac
+done
+
+# Initialize variables.
+if [ "x$name" = "x" ] ; then
+  currdir=`pwd`
+  name=${currdir##*/}
+fi
+version=`date +%Y%m%d`
+if [ "x$ext" = "x" ] ; then
+  ext="tar.bz2"
+fi
+
+# Make archive.
+outname="${name}-${version}.${ext}"
+if [ -e "../$outname" ] ; then
+  rotate_oldfile
+fi
+make_archive
 
