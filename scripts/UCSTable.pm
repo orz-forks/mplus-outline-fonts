@@ -1,3 +1,8 @@
+# vim:set ts=8 sts=4 sw=4 tw=0:
+#
+# Last Change: 20-Apr-2004.
+# Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
+
 package UCSTable;
 
 my $DIR = "ucstable.d";
