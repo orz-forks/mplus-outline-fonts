@@ -20,11 +20,13 @@ $config::FONT_SKELETON = 'mplus_skeleton.sfd';
 $config::FONT_COPYRIGHT = 'Copyright (C) 2004 M+ Font Project';
 # Constants
 my %WEIGHT_TABLE = (
-    'light' => 4,
-    'regular' => 3,
-    'medium' => 2,
-    'bold' => 1,
-    'heavy' => 0,
+    'thin' => 6,
+    'light' => 5,
+    'regular' => 4,
+    'medium' => 3,
+    'bold' => 2,
+    'heavy' => 1,
+    'black' => 0,
 );
 my $WEIGHT_DEFAULT = 'medium';
 my $FILENAME_DATADIRS = 'datadirs';

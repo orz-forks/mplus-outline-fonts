@@ -2,7 +2,10 @@
 
 default: medium
 
-all: light regular medium bold heavy
+all: thin light regular medium bold heavy black
+
+thin: mplus_skeleton.sfd
+	sh scripts/build_ttf.sh thin
 
 light: mplus_skeleton.sfd
 	sh scripts/build_ttf.sh light
@@ -18,6 +21,9 @@ bold: mplus_skeleton.sfd
 
 heavy: mplus_skeleton.sfd
 	sh scripts/build_ttf.sh heavy
+
+black: mplus_skeleton.sfd
+	sh scripts/build_ttf.sh black
 
 mplus_skeleton.sfd: mplus_skeleton.tar.bz2
 	bzip2 -d -k -c mplus_skeleton.tar.bz2 | tar xf -
