@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!-- vim:set ts=4 sts=4 sw=4 tw=0: -->
+<fontinfo bound-width="100" bound-ascent="110" bound-descent="40">
+
+	<!-- p -->
+	<character code="0x0070" L="5" M="100" R="5" col="0">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- q -->
+	<character code="0x0071" L="5" M="100" R="5" col="1">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- r -->
+	<character code="0x0072" L="5" M="100" R="5" col="2">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- s -->
+	<character code="0x0073" L="5" M="100" R="5" col="3">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- t -->
+	<character code="0x0074" L="5" M="100" R="5" col="4">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- u -->
+	<character code="0x0075" L="5" M="100" R="5" col="5">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- v -->
+	<character code="0x0076" L="5" M="100" R="5" col="6">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+	<!-- w -->
+	<character code="0x0077" L="5" M="100" R="5" col="7">
+		<width L="5" M="100" R="5" row="0" />
+		<width L="5" M="100" R="5" row="1" />
+		<width L="5" M="100" R="5" row="2" />
+		<width L="5" M="100" R="5" row="3" />
+		<width L="5" M="100" R="5" row="4" />
+		<width L="5" M="100" R="5" row="5" />
+		<width L="5" M="100" R="5" row="6" />
+	</character>
+
+</fontinfo>
