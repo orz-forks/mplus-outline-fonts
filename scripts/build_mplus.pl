@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 25-May-2004.
+# Last Change: 23-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 use strict;
@@ -15,13 +15,15 @@ use EPSCut;
 use PESGenerator;
 
 # Parameters
+my @today = localtime;
+my ($YEAR, $MONTH, $DAY) = ($today[5] + 1900, $today[4] + 1, $today[3]);
 my $INDIR = './eps.d';
 my $WORKDIR = './work.d';
 my (@WEIGHTS, %WEIGHTS);
 my $VERBOSE_LEVEL = 0;
 $config::FONT_BASENAME = 'mplus';
 $config::FONT_SKELETON = 'mplus_skeleton.sfd';
-$config::FONT_COPYRIGHT = 'Copyright (C) 2004 M+ Font Project';
+$config::FONT_COPYRIGHT = "Copyright (C) $YEAR M+ Font Project";
 # Constants
 my %WEIGHT_TABLE = (
     'thin' => 6,
