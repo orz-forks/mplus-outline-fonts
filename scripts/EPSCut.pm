@@ -1,25 +1,35 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-Apr-2004.
+# Last Change: 19-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package EPSCut;
 
-my $NUNIT = 100;
-my $SCALE = 10;
+my $OUT_SQUARE_SIZE = 1000;
 my $RXFLT = "-?\\d+(\\.\\d+)?";
 
+# Cut and get partial EPS in square area from eps.
 sub cut
+{
+    my $nunit = 100;
+    return &cut2(@_[0..3], $nunit, $nunit, $OUT_SQUARE_SIZE / $nunit);
+}
+
+# Cut and get partial EPS in rectangle area from eps.
+sub cut_rectangle
 {
     my $infile = shift;
     my $outfile = shift;
     my $row = shift;
     my $col = shift;
+    my $unit_width = shift;
+    my $unit_height = shift;
+    my $unit_scale = shift;
     # Prepare
-    my @size = ($SCALE * $NUNIT, $SCALE * $NUNIT);
+    my @size = ($unit_scale * $unit_width, $unit_scale * $unit_height);
     my @range = (
-	$col * $NUNIT, $row * $NUNIT,
-	($col + 1) * $NUNIT, ($row + 1) * $NUNIT
+	$col * $unit_width, $row * $unit_height,
+	($col + 1) * $unit_width, ($row + 1) * $unit_height
     );
     open IN, $infile;
     open OUT, ">$outfile";
@@ -61,7 +71,7 @@ sub cut
 	}
 	for (@draw_packet) {
 	    &print_eps(&shift_scale_round(
-		    $_, -$range[0], -$range[1], $SCALE)."\n");
+		    $_, -$range[0], -$range[1], $unit_scale)."\n");
 	}
     }
     close OUT;
