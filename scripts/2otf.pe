@@ -1,4 +1,4 @@
-#!/usr/local/bin/pfaedit -script
+#!/usr/local/bin/fontforge -script
 
 filename = ""
 if ($argc > 1)

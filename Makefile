@@ -1,6 +1,6 @@
 # vim:set ts=8 sts=8 sw=8 tw=0:
 # 
-# Last Change: 20-Apr-2004.
+# Last Change: 23-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 default: medium
@@ -31,6 +31,7 @@ black: mplus_skeleton.sfd
 mplus_skeleton.sfd: mplus_skeleton.tar.bz2
 	bzip2 -d -k -c mplus_skeleton.tar.bz2 | tar xf -
 	touch mplus_skeleton.sfd
+	sleep 1
 
 tags:
 	ctags scripts/*.pl scripts/*.pm

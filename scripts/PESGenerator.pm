@@ -1,6 +1,8 @@
 # vim:set ts=8 sts=4 sw=4 tw=0:
 #
-# Last Change: 20-May-2004.
+# PfaEdit (fontforge) Script Generator
+#
+# Last Change: 23-Jan-2005.
 # Maintainer:  MURAOKA Taro <koron@tka.att.ne.jp>
 
 package PESGenerator;
@@ -53,7 +55,7 @@ sub save
     open OUT, ">$path";
     binmode OUT;
     # Header
-    print OUT "#!/usr/local/bin/pfaedit -script\n";
+    print OUT "#!/usr/local/bin/fontforge -script\n";
     if (0 >= @{$this->{eps_files}}) {
 	return 0;
     }
