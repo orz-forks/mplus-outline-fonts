@@ -52,7 +52,7 @@ sub new
     # Check files are not included in codemap
     opendir LS, $dir;
     for my $file (readdir LS) {
-	next if $file =~ m/^(?:\.|\.\.|codemap)$/;
+	next if $file =~ m/^(?:\.|\.\.|codemap|CVS)$/;
 	my $path = join('/', $dir, $file);
 	if (not exists $this->{name2codes}->{$path}) {
 	    printf STDERR "$path isn't included in codemap file\n";
