@@ -1,0 +1,70 @@
+fontname_base = "%Fnbase%"
+family = "%Family%"
+weight = "%Weight%"
+year   = "2005"
+version = "1.010"
+
+fontname = fontname_base + "-" + weight
+copyright = "Copyright(c) " + year + " M+ Font Project"
+
+fullname_lower = family + "-" + weight
+fullname = ""; i = 0; len = Strlen(fullname_lower); while (i < len)
+	_c = Strsub(fullname_lower, i, i+1)
+	if (i == 0 && Ord(_c)[0] >= Ord('a')[0] && Ord(_c)[0] <= Ord('z')[0])
+		fullname = Chr(Ord(_c)[0] - 32)
+	elseif (_c == '-')
+		fullname = fullname + ' '
+	else
+		fullname = fullname + _c
+	endif
+i++; endloop
+
+SetFontNames(fontname, family, fullname, weight, copyright, version)
+SetOS2Value("VendorID", "M+  ")
+SetTTFName(0x409, 1, Strsub(fullname, 0, Strlen(family)));
+SetTTFName(0x409, 2, weight);
+SetTTFName(0x409, 11, "http://mplus-fonts.sourceforge.jp");
+
+panose = Array(10)
+panose[0] = 2;  panose[1] = 11; panose[2] = 0;  panose[3] = 2;  panose[4] = 2
+panose[5] = 2;  panose[6] = 3;  panose[7] = 2;  panose[8] = 2;  panose[9] = 7
+SetOS2Value("IBMFamily", 8 * 256 + 6)
+
+if (weight == "black") 
+	panose[2] = 9;  panose[3] = 2
+#	SetOS2Value("fsSelection", 0x20)
+#	SetOS2Value("usWeightClass", 900)
+	SetMacStyle("Bold")
+elseif (weight == "heavy")
+	panose[2] = 8;  panose[3] = 2
+#	SetOS2Value("usWeightClass", 800)
+#	SetOS2Value("fsSelection", 0x20)
+	SetMacStyle("Bold")
+elseif (weight == "bold")
+	panose[2] = 7;  panose[3] = 2
+#	SetOS2Value("usWeightClass", 700)
+#	SetOS2Value("fsSelection", 0x20)
+	SetMacStyle("Bold")
+elseif (weight == "medium")
+	panose[2] = 6;  panose[3] = 2
+#	SetOS2Value("usWeightClass", 500)
+elseif (weight == "regular")
+	panose[2] = 5;  panose[3] = 2
+#	SetOS2Value("usWeightClass", 400)
+#	SetOS2Value("fsSelection", 0x02)
+elseif (weight == "light")
+	panose[2] = 4;  panose[3] = 3
+#	SetOS2Value("usWeightClass", 300)
+elseif (weight == "thin")
+	panose[2] = 3;  panose[3] = 3
+#	SetOS2Value("usWeightClass", 100)
+else
+	panose[2] = 0;  panose[3] = 0
+endif
+
+c = Strsub(family, Strlen(family)-1); if (c == "M" || c == 'm')
+	panose[3] = 9
+	SetOS2Value("IBMFamily", 8 * 256 + 9)
+endif
+
+SetPanose(panose)

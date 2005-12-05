@@ -1,0 +1,76 @@
+#!/usr/local/bin/fontforge -script
+
+scale_percentage = 98;
+scaled_module = "latin_proportional";
+
+hex=Array(16)
+hex[0]= "0"; hex[1]= "1"; hex[2]= "2"; hex[3] = "3";
+hex[4]= "4"; hex[5]= "5"; hex[6]= "6"; hex[7] = "7";
+hex[8]= "8"; hex[9]= "9"; hex[10]="a"; hex[11]= "b";
+hex[12]="c"; hex[13]="d"; hex[14]="e"; hex[15]= "f";
+
+# create font
+New()
+Reencode("unicode");
+
+_weight = Strsub($1:r, Strrstr($1:r,"-")+1)
+_ttfname = $1
+
+modules = Array($argc-2);
+i = 0; while (i < SizeOf(modules))
+	modules[i] = $argv[i+2]
+	i++
+endloop
+
+# load SVG files in each module
+mod = 0; while (mod < SizeOf(modules))
+	subdir_found = 0;
+	moddir = "../../../splitted/" + _weight + "/" + modules[mod]
+	x = 0; while (x <= 0xf)
+		y = 0; while (y <= 0xf)
+			subdir = moddir + "/u" + hex[x] + hex[y]
+			if (FileAccess(subdir) == 0)
+				subdir_found = 1
+				baseline = subdir + "/baseline"
+				if (FileAccess(baseline) == 0)
+					Save("tmp.sfd"); Close(); Open("tmp.sfd")
+				endif
+				$trace=0; Import(subdir + "/u*.svg"); $trace=0
+				if (FileAccess(baseline) == 0)
+					blh = LoadStringFromFile(baseline)
+					SelectChanged()
+					Move(0, StrTol(blh))
+					if (modules[mod] == scaled_module)
+						Scale(scale_percentage)
+					endif			
+				endif
+			endif
+		y++; endloop
+	x++; endloop
+	if (!subdir_found)
+		baseline = moddir + "/baseline"
+		if (FileAccess(baseline) == 0)
+			Save("tmp.sfd"); Close(); Open("tmp.sfd")
+		endif
+		$trace=0; Import(moddir + "/u*.svg"); $trace=0
+		if (FileAccess(baseline) == 0)
+			blh = LoadStringFromFile(baseline)
+			SelectChanged(0)
+			Move(0, Strtol(blh))
+			if (modules[mod] == scaled_module)
+				Scale(scale_percentage)
+			endif			
+		endif
+	endif
+mod++; endloop
+
+set_fontnames()
+set_bearings()
+set_kernings()
+
+# SelectAll(); RemoveOverlap(); RoundToInt()
+
+Reencode("unicode");
+Generate(_ttfname, "", 4)
+
+Quit()

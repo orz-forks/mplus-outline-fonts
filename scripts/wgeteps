@@ -1,6 +1,0 @@
-#!/bin/sh
-
-url=http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/.eps/
-outdir=work.d/eps
-
-wget -nH --cut-dirs=2 -P $outdir -r -l 2 -Aeps -L -np $url
