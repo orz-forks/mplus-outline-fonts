@@ -1,4 +1,4 @@
-GROUPS:=	hiragana1 katakana1 miscellaneous1 latin_proportional \
+GROUPS:=	hiragana1 katakana1 miscellaneous1 latin_proportional1 \
 		hiragana2 katakana2 miscellaneous2 # latin_halfwidth
 WEIGHTS:=	black heavy bold medium regular light thin
 TARGETS:=	mplus-1p mplus-2p # mplus-1m mplus-2m
