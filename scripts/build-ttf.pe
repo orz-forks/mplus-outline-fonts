@@ -1,6 +1,6 @@
 #!/usr/local/bin/fontforge -script
 
-scale_percentage = 98;
+_scale_percentage = 98;
 scaled_modules = [ "latin_proportional1" ];
 
 hex = [ "0","1","2","3","4","5","6","7","8","9", "a","b","c","d","e","f" ]
@@ -38,7 +38,7 @@ mod = 0; while (mod < SizeOf(modules))
 					Move(0, StrTol(blh))
 					i = 0; while (i < SizeOf(scaled_modules))
 						if (modules[mod] == scaled_modules[0])
-							Scale(scale_percentage)
+							Scale(_scale_percentage)
 						endif			
 					i++; endloop
 				endif
@@ -57,7 +57,7 @@ mod = 0; while (mod < SizeOf(modules))
 			Move(0, Strtol(blh))
 			i = 0; while (i < SizeOf(scaled_modules))
 				if (modules[mod] == scaled_modules[i])
-					Scale(scale_percentage)
+					Scale(_scale_percentage)
 				endif
 			i++; endloop
 		endif

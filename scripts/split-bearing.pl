@@ -43,9 +43,10 @@ foreach $arg (@ARGV) {
 	my ($ch, @bearings) = split();
 
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
-	print "Select(\"$ch\"); ";
+	print "Select(\"$ch\")\n";
 	$bearings[$L] += $dLSB;  $bearings[$R] += $dRSB;
-	print "SetLBearing($bearings[$L]); SetRBearing($bearings[$R]);\n";
+	print "SetLBearing(Round($bearings[$L]*_scale_percentage/100.0))\n";
+	print "SetRBearing(Round($bearings[$R]*_scale_percentage/100.0))\n";
     }
     close BEARINGS;
 }
