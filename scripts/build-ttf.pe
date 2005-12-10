@@ -75,6 +75,6 @@ set_kernings()
 # SelectAll(); RemoveOverlap(); RoundToInt()
 
 Reencode("unicode");
-Generate(_ttfname, "", 0x84)
+Generate(_ttfname, "", 0x94)
 
 Quit()
