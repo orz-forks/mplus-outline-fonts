@@ -1,6 +1,6 @@
 #!/usr/local/bin/fontforge -script
 
-_scale_percentage = 94;
+_scale_percentage = 97;
 scaled_modules = Array(2)
 scaled_modules[0] = "latin_proportional1"
 scaled_modules[1] = "latin_proportional2"
