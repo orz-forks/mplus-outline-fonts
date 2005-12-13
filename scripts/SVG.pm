@@ -5,7 +5,7 @@ use Carp;
 
 my @weights = qw(black heavy bold medium regular light thin);
 
-$em = 100;	# em-size in SVG.
+$SVG::em = 100;	# em-size in SVG.
 
 sub new {
     my $class = shift;
@@ -348,6 +348,7 @@ sub _set_region {
     my ($svg, $w, $h) = @_;
     $svg =~ m/<svg\s[^>]*>/s;
     my ($pre, $tag, $post) =  ($`, $&, $');
+    my $em = $SVG::em;
 
 #    $tag =~ s/\sviewBox\s*=\s*\"[^"]*\"/" viewBox=\"0 0 $w $w\""/es;
     $tag =~ s/\sviewBox\s*=\s*\"[^"]*\"/" viewBox=\"0 0 $em $em\""/es;
