@@ -5,6 +5,8 @@ use Carp;
 
 my @weights = qw(black heavy bold medium regular light thin);
 
+$em = 100;	# em-size in SVG.
+
 sub new {
     my $class = shift;
     my $filename = shift;
@@ -88,7 +90,7 @@ sub clip {
 	;
     }
     $this->{svg} = _set_region($this->{svg}, $region->[2], $region->[3]);
-    $this->{svg} =~ s/<rect\b.*?fill\s*=\s*\"none\".*?>//sg;
+    $this->{svg} =~ s/<rect\b[^<>]*?fill\s*=\s*\"none\".*?>//sg;
 
     return $this;
 }
@@ -347,7 +349,8 @@ sub _set_region {
     $svg =~ m/<svg\s[^>]*>/s;
     my ($pre, $tag, $post) =  ($`, $&, $');
 
-    $tag =~ s/\sviewBox\s*=\s*\"[^"]*\"/" viewBox=\"0 0 $w $w\""/es;
+#    $tag =~ s/\sviewBox\s*=\s*\"[^"]*\"/" viewBox=\"0 0 $w $w\""/es;
+    $tag =~ s/\sviewBox\s*=\s*\"[^"]*\"/" viewBox=\"0 0 $em $em\""/es;
     $tag =~ s/\si:viewOrigin\s*=\s*\"[^"]*\"/" i:viewOrigin=\"0 0\""/es;
     $tag =~ s/\swidth\s*=\s*\"[^"]*\"/" width=\"$w\""/es;
     $tag =~ s/\sheight\s*=\s*\"[^"]*\"/" height=\"$w\""/es; # width justified
