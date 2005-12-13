@@ -42,11 +42,20 @@ foreach $arg (@ARGV) {
 
 	my ($ch, @bearings) = split();
 
+	$l_is_relative = $r_is_relative = $r_is_width = 0;
+	$l_is_relative = 1 if ($bearings[$L] =~ s/^[+]//);
+	$r_is_width = 1 if ($bearings[$R] =~ s/^w//);
+	$r_is_relative = 1 if ($bearings[$R] =~ s/^[+]//);
+	    
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
 	print "Select(\"$ch\")\n";
 	$bearings[$L] += $dLSB;  $bearings[$R] += $dRSB;
-	print "SetLBearing(Round($bearings[$L]*_scale_percentage/100.0))\n";
-	print "SetRBearing(Round($bearings[$R]*_scale_percentage/100.0))\n";
+	print "SetLBearing(Round($bearings[$L]*_scale_percentage/100.0), $l_is_relative)\n";
+	if ($r_is_width) {
+	    print "SetWidth(Round($bearings[$R]*_scale_percentage/100.0), $r_is_relative)\n";
+	} else {
+	    print "SetRBearing(Round($bearings[$R]*_scale_percentage/100.0), $r_is_relative)\n";
+	}
     }
     close BEARINGS;
 }
