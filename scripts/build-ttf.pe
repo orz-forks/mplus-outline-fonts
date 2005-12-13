@@ -1,7 +1,9 @@
 #!/usr/local/bin/fontforge -script
 
 _scale_percentage = 94;
-scaled_modules = Array(1); scaled_modules[0] = "latin_proportional1";
+scaled_modules = Array(2)
+scaled_modules[0] = "latin_proportional1"
+scaled_modules[1] = "latin_proportional2"
 
 hex=Array(16)
 hex[0]= "0"; hex[1]= "1"; hex[2]= "2"; hex[3] = "3";
@@ -41,7 +43,7 @@ mod = 0; while (mod < SizeOf(modules))
 					SelectChanged()
 					Move(0, StrTol(blh))
 					i = 0; while (i < SizeOf(scaled_modules))
-						if (modules[mod] == scaled_modules[0])
+						if (modules[mod] == scaled_modules[i])
 							Scale(_scale_percentage)
 						endif			
 					i++; endloop
@@ -50,6 +52,12 @@ mod = 0; while (mod < SizeOf(modules))
 		y++; endloop
 	x++; endloop
 	if (!subdir_found)
+		/* AD HOC change. I'll fix soon */
+			if (modules[mod] == "latin_proportional2") 
+				Select("3"); Clear()
+				Select("M"); Clear()
+			endif
+		/*   end  of  AD  HOC  change   */
 		baseline = moddir + "/baseline"
 		if (FileAccess(baseline) == 0)
 			Save("tmp.sfd"); Close(); Open("tmp.sfd")

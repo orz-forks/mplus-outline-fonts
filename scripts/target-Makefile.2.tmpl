@@ -1,20 +1,20 @@
 FONTNAME_BASE:=	%%FONTNAME_BASE%%
 FAMILY:=	%%FAMILY%%
 MODULES_KANA:=	%%MODULES_KANA%%
-MODULE_LATIN:=	%%MODULE_LATIN%%
+MODULES_LATIN:=	%%MODULES_LATIN%%
 
 WEIGHT:=	%%WEIGHT%%
 
 SCRIPTS=	set_bearings set_kernings set_fontnames
-MODULES=	$(MODULES_KANA) ${MODULE_LATIN}
+MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
 	/usr/local/bin/fontforge -script build-ttf.pe $@ $(MODULES)
 
-set_bearings: ../../../../svg.d/${MODULE_LATIN}/bearings
+set_bearings: ../../../../svg.d/latin_proportional1/bearings
 	perl ../../../../scripts/split-bearing.pl ${WEIGHT} $(MODULES) > $@
 
-set_kernings: ../../../../svg.d/${MODULE_LATIN}/kernings
+set_kernings: ../../../../svg.d/latin_proportional1/kernings
 	perl ../../../../scripts/split-kerning.pl ${WEIGHT} $(MODULES) > $@
 
 build-ttf.pe: ../../../../scripts/build-ttf.pe
