@@ -13,7 +13,8 @@ hex[12]="c"; hex[13]="d"; hex[14]="e"; hex[15]= "f";
 
 # create font
 New()
-Reencode("unicode");
+Reencode("unicode")
+# ScaleToEm(880, 120)
 
 _weight = Strsub($1:r, Strrstr($1:r,"-")+1)
 _ttfname = $1
@@ -82,8 +83,8 @@ set_kernings()
 
 # SelectAll(); RemoveOverlap(); RoundToInt()
 
-Generate(_ttfname, "", 0x84)
-Close(); Open(_ttfname)
 Generate(_ttfname, "", 0x94)
+Close(); Open(_ttfname)
+Generate(_ttfname, "", 0x84)
 
 Quit()
