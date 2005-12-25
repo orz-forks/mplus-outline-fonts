@@ -83,6 +83,8 @@ set_kernings()
 
 # SelectAll(); RemoveOverlap(); RoundToInt()
 
+set_instructions()
+
 Generate(_ttfname, "", 0x94)
 
 # Punctuations are interpreted as 'DFLT' script when they are kerned normally,

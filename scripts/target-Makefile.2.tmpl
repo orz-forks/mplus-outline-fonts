@@ -5,7 +5,7 @@ MODULES_LATIN:=	%%MODULES_LATIN%%
 
 WEIGHT:=	%%WEIGHT%%
 
-SCRIPTS=	set_bearings set_kernings set_fontnames
+SCRIPTS=	set_bearings set_kernings set_fontnames set_instructions
 MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
@@ -19,6 +19,9 @@ set_kernings: ../../../../svg.d/latin_proportional1/kernings
 
 build-ttf.pe: ../../../../scripts/build-ttf.pe
 	ln -s ../../../../scripts/build-ttf.pe $@
+
+set_instructions: ../../../../scripts/set_instructions
+	ln -s ../../../../scripts/set_instructions $@
 
 set_fontnames: ../../../../scripts/set_fontnames.tmpl
 	sed 's/%Fnbase%/${FONTNAME_BASE}/;s/%Family%/${FAMILY}/g;s/%Weight%/${WEIGHT}/g' ../../../../scripts/set_fontnames.tmpl > $@
