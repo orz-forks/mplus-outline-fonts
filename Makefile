@@ -52,3 +52,5 @@ clean-targets:
 
 rebuild-ttf: clean-targets dirs ttf
 
+release: ttf
+	@(cd release ; make )
