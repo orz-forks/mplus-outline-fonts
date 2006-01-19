@@ -81,7 +81,7 @@ set_fontnames()
 set_bearings()
 set_kernings()
 
-# SelectAll(); RemoveOverlap(); RoundToInt()
+SelectAll(); RemoveOverlap(); RoundToInt()
 
 set_instructions()
 
