@@ -1,3 +1,13 @@
+###  *  prefix 'w' means R is width instead of right sidebearing.
+###  *  prefix '+' means L/R is relative from current value.
+###     (use '+-1' to shift 1 unit left)
+###
 ###  black      heavy      bold      medium     regular     light      thin
 ###----+----|-----+----|-----+----|-----+----|-----+----|-----+----|-----+----|
-M    45   45    45   45    45   45    45   45    45   45    45   45    45   45
+###  L |  R |   L |  R |   L |  R |   L |  R |   L |  R |   L |  R |   L |  R |
+
+*    45   45    45   45    45   45    45   45    45   45    45   45    45   45
+
+M    40   40    40   40    40   40    40   40    40   40    40   40    40   40
+
+g    30   40    30   40    30   40    30   40    30   40    30   40    30   40
