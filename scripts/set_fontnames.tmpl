@@ -1,8 +1,8 @@
 fontname_base = "%Fnbase%"
 family = "%Family%"
 weight = "%Weight%"
-year   = "2005"
-version = "1.011"
+year   = "2006"
+version = "1.012"
 
 fontname = fontname_base + "-" + weight
 copyright = "Copyright(c) " + year + " M+ Font Project"
@@ -25,9 +25,7 @@ SetTTFName(0x409, 1, Strsub(fullname, 0, Strlen(family)));
 SetTTFName(0x409, 2, weight);
 SetTTFName(0x409, 11, "http://mplus-fonts.sourceforge.jp");
 
-panose = Array(10)
-panose[0] = 2;  panose[1] = 11; panose[2] = 0;  panose[3] = 2;  panose[4] = 2
-panose[5] = 2;  panose[6] = 3;  panose[7] = 2;  panose[8] = 2;  panose[9] = 7
+panose = [2, 11, 0, 2, 2, 2, 3, 2, 2, 7]
 SetOS2Value("IBMFamily", 8 * 256 + 6)
 
 if (weight == "black") 
