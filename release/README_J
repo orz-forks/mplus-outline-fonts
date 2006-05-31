@@ -1,4 +1,4 @@
-M+ FONTS                                Copyright (C) 2003-2005 M+ FONTS PROJECT
+M+ FONTS                                Copyright (C) 2003-2006 M+ FONTS PROJECT
 
 -
 
@@ -12,7 +12,7 @@ README_J
 M+ OUTLINE FONTS に興味をお持ちいただき、ありがとうございます。
 この試用版のフォントは M+ 1 と M+ 2 の 2 種類のかな文字と
 基本的な英数字（プロポーショナル）を有し、各々 7 段階のウェイトからなる、
-以下 14 種類の ttf ファイルで形成されています。
+以下 21 種類の ttf ファイルで形成されています。
 
 	mplus-1p-thin.ttf
 	mplus-1p-light.ttf
@@ -29,6 +29,14 @@ M+ OUTLINE FONTS に興味をお持ちいただき、ありがとうございます。
 	mplus-2p-bold.ttf
 	mplus-2p-heavy.ttf
 	mplus-2p-black.ttf
+
+	mplus-1c-thin.ttf
+	mplus-1c-light.ttf
+	mplus-1c-regular.ttf
+	mplus-1c-medium.ttf
+	mplus-1c-bold.ttf
+	mplus-1c-heavy.ttf
+	mplus-1c-black.ttf
 
 基本的にかな文字以外は共通となっていますが、英数字などの一部を修正して
 各々のかな文字が持つ雰囲気に合わせています。
