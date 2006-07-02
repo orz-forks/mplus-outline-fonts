@@ -40,6 +40,7 @@ sub new {
 	frames => \@frames,
 	rows => \@rows,
 	cols => \@cols,
+	missing_weights => $#weights - $#rows,
 	dumpdir => $dumpdir,
 	logfilename => $logfilename,
     }, $class;
@@ -129,6 +130,7 @@ sub setdumpdir {
 
 sub dump {
     my $this = shift;
+    my $skip = $this->{missing_weights};
     my $dumpdir = $this->{dumpdir};
     croak "destinaton dir not specified" if ($dumpdir eq '');
 
@@ -136,12 +138,10 @@ sub dump {
     $subdir =~ s/^[^\/]*\///g;
 
     for (my $col = 0; $col <= $#{$this->{cols}}; $col++) {
-	my $dir = "$dumpdir/$weights[$col]";
-	mkdir $dir unless -e $dir;
 	for (my $row = 0; $row <= $#{$this->{rows}}; $row++) {
-	    $dir = "$dumpdir/$weights[$row]";
+	    my $dir = "$dumpdir/$weights[$row + $skip]";
 	    mkdir $dir unless -e $dir;
-	    my $outdir = "$dumpdir/$weights[$row]/$subdir";
+	    my $outdir = "$dumpdir/$weights[$row + $skip]/$subdir";
 	    mkdir $outdir unless -e $outdir;
 	    my $tmp = clip(clone($this), $row, $col);
 

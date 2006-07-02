@@ -18,6 +18,16 @@ FONTS=	../work.d/targets/mplus-1p/black/mplus-1p-black.ttf \
 	../work.d/targets/mplus-2p/regular/mplus-2p-regular.ttf \
 	../work.d/targets/mplus-2p/light/mplus-2p-light.ttf \
 	../work.d/targets/mplus-2p/thin/mplus-2p-thin.ttf \
+	../work.d/targets/mplus-1m/bold/mplus-1m-bold.ttf \
+	../work.d/targets/mplus-1m/medium/mplus-1m-medium.ttf \
+	../work.d/targets/mplus-1m/regular/mplus-1m-regular.ttf \
+	../work.d/targets/mplus-1m/light/mplus-1m-light.ttf \
+	../work.d/targets/mplus-1m/thin/mplus-1m-thin.ttf \
+	../work.d/targets/mplus-2m/bold/mplus-2m-bold.ttf \
+	../work.d/targets/mplus-2m/medium/mplus-2m-medium.ttf \
+	../work.d/targets/mplus-2m/regular/mplus-2m-regular.ttf \
+	../work.d/targets/mplus-2m/light/mplus-2m-light.ttf \
+	../work.d/targets/mplus-2m/thin/mplus-2m-thin.ttf \
 	../work.d/targets/mplus-1c/black/mplus-1c-black.ttf \
 	../work.d/targets/mplus-1c/heavy/mplus-1c-heavy.ttf \
 	../work.d/targets/mplus-1c/bold/mplus-1c-bold.ttf \
