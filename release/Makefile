@@ -34,7 +34,24 @@ FONTS=	../work.d/targets/mplus-1p/black/mplus-1p-black.ttf \
 	../work.d/targets/mplus-1c/medium/mplus-1c-medium.ttf \
 	../work.d/targets/mplus-1c/regular/mplus-1c-regular.ttf \
 	../work.d/targets/mplus-1c/light/mplus-1c-light.ttf \
-	../work.d/targets/mplus-1c/thin/mplus-1c-thin.ttf
+	../work.d/targets/mplus-1c/thin/mplus-1c-thin.ttf \
+	../work.d/targets/mplus-2c/black/mplus-2c-black.ttf \
+	../work.d/targets/mplus-2c/heavy/mplus-2c-heavy.ttf \
+	../work.d/targets/mplus-2c/bold/mplus-2c-bold.ttf \
+	../work.d/targets/mplus-2c/medium/mplus-2c-medium.ttf \
+	../work.d/targets/mplus-2c/regular/mplus-2c-regular.ttf \
+	../work.d/targets/mplus-2c/light/mplus-2c-light.ttf \
+	../work.d/targets/mplus-2c/thin/mplus-2c-thin.ttf
+#	../work.d/targets/mplus-1mn/bold/mplus-1mn-bold.ttf \
+#	../work.d/targets/mplus-1mn/medium/mplus-1mn-medium.ttf \
+#	../work.d/targets/mplus-1mn/regular/mplus-1mn-regular.ttf \
+#	../work.d/targets/mplus-1mn/light/mplus-1mn-light.ttf \
+#	../work.d/targets/mplus-1mn/thin/mplus-1mn-thin.ttf \
+#	../work.d/targets/mplus-2mn/bold/mplus-2mn-bold.ttf \
+#	../work.d/targets/mplus-2mn/medium/mplus-2mn-medium.ttf \
+#	../work.d/targets/mplus-2mn/regular/mplus-2mn-regular.ttf \
+#	../work.d/targets/mplus-2mn/light/mplus-2mn-light.ttf \
+#	../work.d/targets/mplus-2mn/thin/mplus-2mn-thin.ttf
 
 release: 
 	mkdir -p ${RELEASE}
@@ -42,3 +59,6 @@ release:
 	cp -p $(FONTS) ${RELEASE}
 	tar cvfz ${RELEASE}.tar.gz ${RELEASE}/
 	rm -rf ${RELEASE}
+
+clean:
+	rm -rf ${RELEASE} ${RELEASE}.tar.gz
