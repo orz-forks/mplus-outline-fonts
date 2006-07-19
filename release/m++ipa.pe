@@ -1,51 +1,111 @@
 #!/usr/bin/env fontforge -script
 
-filename = [ "mplus-1p-regular.ttf", "mplus-2p-regular.ttf", \
-	     "mplus-1m-regular.ttf", "mplus-2m-regular.ttf", \
-             "mplus-1c-regular.ttf", "mplus-2c-regular.ttf" ]
-fontname = [ "M+1P+IPAG", "M+2P+IPAG", "M+1M+IPAG", "M+2M+IPAG", \
-	     "M+1C+IPAG", "M+2C+IPAG" ]
+Mplus1p = "mplus-1p-regular.ttf"
+Mplus2p = "mplus-2p-regular.ttf"
+Mplus1c = "mplus-1c-regular.ttf"
+Mplus2c = "mplus-2c-regular.ttf"
+Mplus1m = "mplus-1m-regular.ttf"
+Mplus2m = "mplus-2m-regular.ttf"
+Mplus1mn = "mplus-1mn-regular.ttf"
 
-kanjifont = "ipag.ttf"
+KanjiFont = "ipag.ttf"
 
-panose_mono = [ 2, 5, 3, 9, 0,  0, 0, 0, 0, 0 ]
+Mplus1p_kanji = "M+1P+IPAG"
+Mplus2p_kanji = "M+2P+IPAG"
+Mplus1c_kanji = "M+1C+IPAG"
+Mplus2c_kanji = "M+2C+IPAG"
+Mplus1m_kanji = "M+1M+IPAG"
+Mplus2m_kanji = "M+2M+IPAG"
+Mplus1mn_kanji = "M+1MN+IPAG"
 
-notfound=0;
-if (FileAccess(kanjifont)<0) notfound=1; endif
-i = 0; while (i < SizeOf(filename))
-	if (FileAccess(filename[i])<0) notfound=1; endif
-i++; endloop
+panose_mono = Array(10);
+panose_mono[0] = 2
+panose_mono[1] = 5
+panose_mono[2] = 3
+panose_mono[3] = 9
+panose_mono[4] = 0
+panose_mono[5] = 0
+panose_mono[6] = 0
+panose_mono[7] = 0
+panose_mono[8] = 0
+panose_mono[9] = 0
 
-if (notfound)
+if (FileAccess(Mplus1p)<0 || FileAccess(Mplus2p)<0 || FileAccess(KanjiFont)<0)
 	Print("                                                    ")
 	Print("                       USAGE:                       ")
 	Print("                                                    ")
-	Print(" 1) put these seven files on current directory.     ")
+	Print(" 1) put these eight files on current directory.     ")
         Print("      mplus-1p-regular.ttf                          ")
         Print("      mplus-2p-regular.ttf                          ")
-        Print("      mplus-1m-regular.ttf                          ")
-        Print("      mplus-2m-regular.ttf                          ")
         Print("      mplus-1c-regular.ttf                          ")
         Print("      mplus-2c-regular.ttf                          ")
+        Print("      mplus-1m-regular.ttf                          ")
+        Print("      mplus-2m-regular.ttf                          ")
+        Print("      mplus-1mn-regular.ttf                         ")
         Print("      ipag.ttf                                      ")
 	Print(" 2) run this script by fontforge.                   ")
         Print("      /usr/local/bin/fontforge -script m++ipa.pe    ")
-	Print(" 3) five new files will be created.                 ")
+	Print(" 3) seven new files will be created.                ")
         Print("      M+1P+IPAG.ttf                                 ")
         Print("      M+2P+IPAG.ttf                                 ")
-        Print("      M+1M+IPAG.ttf                                 ")
-        Print("      M+2M+IPAG.ttf                                 ")
         Print("      M+1C+IPAG.ttf                                 ")
         Print("      M+2C+IPAG.ttf                                 ")
+        Print("      M+1M+IPAG.ttf                                 ")
+        Print("      M+2M+IPAG.ttf                                 ")
+        Print("      M+1MN+IPAG.ttf                                ")
 	Print("                                                    ")
 	Quit()
 endif
 
-i = 0; while (i < SizeOf(filename))
-	family = fontname[i]
-	Open(filename[i])
-	MergeFonts(kanjifont)
-	SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
-	Generate(family + ".ttf", "", 4)
-	Close()
-i++; endloop
+family = Mplus1p_kanji
+Open(Mplus1p);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus2p_kanji
+Open(Mplus2p);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus1c_kanji
+Open(Mplus1c);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus2c_kanji
+Open(Mplus2c);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus1m_kanji
+Open(Mplus1m);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+SetPanose(panose_mono)
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus2m_kanji
+Open(Mplus2m);
+MergeFonts(KanjiFont);
+SetPanose(panose_mono)
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+Generate(family + ".ttf", "", 4)
+Close()
+
+family = Mplus1mn_kanji
+Open(Mplus1mn);
+MergeFonts(KanjiFont);
+SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
+SetPanose(panose_mono)
+Generate(family + ".ttf", "", 4)
+Close()
+
