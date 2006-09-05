@@ -1,10 +1,18 @@
 # encoding JIS
 
+# &
+0020.svg	0x0026u
 # *
-# 0028.svg	0x002au
+0028.svg	0x002au
 # 3
-# 0030.svg	0x0033u
+0030.svg	0x0033u
+# B D
+0040.svg	0x0042u 0x0044u
 # M
-# 0048.svg	0x004du
+0048.svg	0x004du
+# P R
+0050.svg	0x0050u 0x0052u
 # g
-# 0060.svg	0x0067u
+0060.svg	0x0067u
+# y
+0078.svg	0x0079u
