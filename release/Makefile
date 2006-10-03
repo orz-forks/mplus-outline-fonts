@@ -1,4 +1,4 @@
-TESTFLIGHT_VER= 012a
+TESTFLIGHT_VER= 012
 
 RELEASE=	mplus-TESTFLIGHT-${TESTFLIGHT_VER}
 
@@ -41,12 +41,12 @@ FONTS=	../work.d/targets/mplus-1p/black/mplus-1p-black.ttf \
 	../work.d/targets/mplus-2c/medium/mplus-2c-medium.ttf \
 	../work.d/targets/mplus-2c/regular/mplus-2c-regular.ttf \
 	../work.d/targets/mplus-2c/light/mplus-2c-light.ttf \
-	../work.d/targets/mplus-2c/thin/mplus-2c-thin.ttf
-#	../work.d/targets/mplus-1mn/bold/mplus-1mn-bold.ttf \
-#	../work.d/targets/mplus-1mn/medium/mplus-1mn-medium.ttf \
-#	../work.d/targets/mplus-1mn/regular/mplus-1mn-regular.ttf \
-#	../work.d/targets/mplus-1mn/light/mplus-1mn-light.ttf \
-#	../work.d/targets/mplus-1mn/thin/mplus-1mn-thin.ttf \
+	../work.d/targets/mplus-2c/thin/mplus-2c-thin.ttf \
+ 	../work.d/targets/mplus-1mn/bold/mplus-1mn-bold.ttf \
+ 	../work.d/targets/mplus-1mn/medium/mplus-1mn-medium.ttf \
+ 	../work.d/targets/mplus-1mn/regular/mplus-1mn-regular.ttf \
+ 	../work.d/targets/mplus-1mn/light/mplus-1mn-light.ttf \
+ 	../work.d/targets/mplus-1mn/thin/mplus-1mn-thin.ttf
 #	../work.d/targets/mplus-2mn/bold/mplus-2mn-bold.ttf \
 #	../work.d/targets/mplus-2mn/medium/mplus-2mn-medium.ttf \
 #	../work.d/targets/mplus-2mn/regular/mplus-2mn-regular.ttf \

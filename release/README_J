@@ -10,36 +10,71 @@ README_J
 ■ M+ TESTFLIGHT
 
 M+ OUTLINE FONTS に興味をお持ちいただき、ありがとうございます。
-この試用版のフォントは M+ 1 と M+ 2 の 2 種類のかな文字と
-基本的な英数字（プロポーショナル）を有し、各々 7 段階のウェイトからなる、
-以下 21 種類の ttf ファイルで形成されています。
+このフォントセットは 2 種類の全角固定幅かな文字 M+ 1 と M+ 2、
+4 種類の可変幅英数字 M+ P（Type-1/2）と M+ C（Type-1/2）、
+3 種類の半角固定幅英数字 M+ M（Type-1/2）と M+ MN から構成されています。
 
-	mplus-1p-thin.ttf
-	mplus-1p-light.ttf
-	mplus-1p-regular.ttf
-	mplus-1p-medium.ttf
-	mplus-1p-bold.ttf
-	mplus-1p-heavy.ttf
-	mplus-1p-black.ttf
-	
-	mplus-2p-thin.ttf
-	mplus-2p-light.ttf
-	mplus-2p-regular.ttf
-	mplus-2p-medium.ttf
-	mplus-2p-bold.ttf
-	mplus-2p-heavy.ttf
-	mplus-2p-black.ttf
+それぞれ thin から black までの 7 種類（半角固定幅英数字は bold までの
+5 種類）のウエイトバリエーションが用意され、 かな文字と英数字を組み合わせた
+43 種類のファイルで、7 つのフォントファミリを形成しています。
 
-	mplus-1c-thin.ttf
-	mplus-1c-light.ttf
-	mplus-1c-regular.ttf
-	mplus-1c-medium.ttf
-	mplus-1c-bold.ttf
-	mplus-1c-heavy.ttf
-	mplus-1c-black.ttf
 
-基本的にかな文字以外は共通となっていますが、英数字などの一部を修正して
-各々のかな文字が持つ雰囲気に合わせています。
+可変幅フォント（かな文字は全角固定幅、英字は可変幅）
+
+M+ 1P     mplus-1p-thin.ttf
+          mplus-1p-light.ttf
+          mplus-1p-regular.ttf
+          mplus-1p-medium.ttf
+          mplus-1p-bold.ttf
+          mplus-1p-heavy.ttf
+          mplus-1p-black.ttf
+          
+M+ 2P     mplus-2p-thin.ttf
+          mplus-2p-light.ttf
+          mplus-2p-regular.ttf
+          mplus-2p-medium.ttf
+          mplus-2p-bold.ttf
+          mplus-2p-heavy.ttf
+          mplus-2p-black.ttf
+          
+M+ 1C     mplus-1c-thin.ttf
+          mplus-1c-light.ttf
+          mplus-1c-regular.ttf
+          mplus-1c-medium.ttf
+          mplus-1c-bold.ttf
+          mplus-1c-heavy.ttf
+          mplus-1c-black.ttf
+          
+M+ 2C     mplus-2c-thin.ttf
+          mplus-2c-light.ttf
+          mplus-2c-regular.ttf
+          mplus-2c-medium.ttf
+          mplus-2c-bold.ttf
+          mplus-2c-heavy.ttf
+          mplus-2c-black.ttf
+
+
+固定幅フォント（かな文字は全角、英数字は半角の固定幅）
+
+M+ 1M     mplus-1m-thin.ttf
+          mplus-1m-light.ttf
+          mplus-1m-regular.ttf
+          mplus-1m-medium.ttf
+          mplus-1m-bold.ttf
+          
+M+ 2M     mplus-2m-thin.ttf
+          mplus-2m-light.ttf
+          mplus-2m-regular.ttf
+          mplus-2m-medium.ttf
+          mplus-2m-bold.ttf
+
+M+ 1MN    mplus-1mn-thin.ttf
+          mplus-1mn-light.ttf
+          mplus-1mn-regular.ttf
+          mplus-1mn-medium.ttf
+          mplus-1mn-bold.ttf
+
+          
 
 
 ■ 他のフォントからの漢字補完
@@ -47,10 +82,12 @@ M+ OUTLINE FONTS に興味をお持ちいただき、ありがとうございます。
 M+ OUTLINE FONTS を使用する環境によって自動的に、または必要に応じた設定で、
 漢字などの未着手文字を他の和文フォントから補完させる事が出来ます。
 
+
 ・ UNIX/Linux (XFT)
 
 自動的に補完されますが、任意の和文フォントから補完させたい場合は
 fonts.conf の設定が必要です。
+
 
 ・ Mac OS X 10.4
 
@@ -59,40 +96,50 @@ Safari.app や TextEdit.app などでは自動的にヒラギノ角ゴから補完され、
 注）FireFox では後述の「IPA フォントとの合成フォント」も含め、
 正常に表示されません。
 
+
 ・ Windows XP
 
 フォントリンクの設定で補完されますが、補完された文字が正常に表示されない様です。
 後述の「IPA フォントとの合成フォント」を試してみて下さい。
 
 
+
+
 ■ IPA フォントとの合成
 
-同梱の m++ipag.pe スクリプトと IPA フォント（ipag.ttf）、fontforge プログラムを
-使用して、合成フォントを生成する事が出来ます。M+ TESTFLIGHT に含まれている
-フォントが正常に表示されなかったり、漢字が補完されない場合は是非お試しください。
+同梱の m++ipag.pe スクリプトと IPA フォント（ipag.ttf）、FontForge プログラム
+を使用して、ipag.ttf から漢字が補完された合成フォントを生成する事ができます。
+合成に必要なファイルとプログラムは以下の通りです。
+
 
 ・ IPA フォントとの合成に必要なファイルとプログラム
 
-	m++ipag.pe（M+ TESTFLIGHT に同梱）
-	mplus-1p-regular.ttf（M+ TESTFLIGHT に同梱）
-	mplus-2p-regular.ttf（M+ TESTFLIGHT に同梱）
-	ipag.ttf *1
-	fontforge *2
+          mplus-1p-regular.ttf *1
+          mplus-2p-regular.ttf *1
+          mplus-1c-regular.ttf *1
+          mplus-2c-regular.ttf *1
+          mplus-1m-regular.ttf *1
+          mplus-2m-regular.ttf *1
+          mplus-1mn-regular.ttf *1
+          m++ipag.pe *1
+          ipag.ttf *2
+          fontforge *3
 
-*1 http://www.grass-japan.org/FOSS4G/readme-grass-i18n-ipafonts.eucjp.htm
-*2 http://fontforge.sourceforge.net/
+*1 M+ TESTFLIGHT に同梱されています
+*2 http://www.grass-japan.org/FOSS4G/readme-grass-i18n-ipafonts.eucjp.htm
+*3 http://fontforge.sourceforge.net/
+
 
 ・ 合成フォントの生成
 
-m++ipag.pe と mplus-1p-regular.ttf、mplus-2p-regular.ttf、ipag.ttf を同じ
-ディレクトリに配置して、以下のコマンドを実行します。
+fontforge 以外のファイルを同じディレクトリに配置し、以下のコマンドを実行します。
 -
 $ ./m++ipag.pe
 -
-M+1+IPAG.ttf と M+2+IPAG.ttf が生成されますので、IPA フォントのライセンスに
+7 つの M+*+IPAG.ttf ファイルが生成されますので、IPA フォントのライセンスに
 従ってご利用ください。
-Mac OS X 上でインストールする際に警告画面が表示される場合もありますが、
-チェック欄を埋め、強制的にインストールする事でご利用いただく事が出来ます。
+Mac OS X 上でインストールする際に警告画面が表示される場合は、チェック欄を埋め、
+確認ボタンをクリックして、強制的にインストールを実行してみてください。
 
 
 
