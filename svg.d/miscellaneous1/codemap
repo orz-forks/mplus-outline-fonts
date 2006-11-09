@@ -1,7 +1,10 @@
-# encoding JIS
+# encoding EUC
 
-# ÅA ÅB
+#°÷°◊¬Á∏§--TEST
+2150.svg	0x2156  0x2157  0x4267  0x3824
+
+# °¢ °£
 u3001.svg	0x3001u	0x3002u
 
-# Å[ Å`
+# °º °¡
 u30FC.svg	0x30fcu	0xff5eu,0x301cu
