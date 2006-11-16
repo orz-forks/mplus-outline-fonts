@@ -7,7 +7,10 @@ UNABRIDGED_GROUPS:=	hiragana1 katakana1 miscellaneous1 \
 			latin_full_clear1 latin_full_clear2
 ABRIDGED_GROUPS:=	latin_monospace1 latin_monospace2 \
 			latin_mono_new1 # latin_mono_new2
-OPTIONAL_GROUPS:=	kanji/01
+OPTIONAL_GROUPS:=	kanji/k1
+.if defined(MPLUS_FULLSET)
+UNABRIDGED_GROUPS+=	${OPTIONAL_GROUPS}
+.endif
 GROUPS:=		${UNABRIDGED_GROUPS} ${ABRIDGED_GROUPS}
 BLACK_WEIGHTS:=		black heavy
 NORMAL_WEIGHTS:=	bold medium regular light thin
@@ -75,7 +78,7 @@ dirs:
 	done
 
 split-svgs: dirs
-	perl -I scripts scripts/split-svg.pl svg.d/*/*.svg
+	perl -I scripts scripts/split-svg.pl svg.d/*/*.svg svg.d/*/*/*.svg
 	for w in $(NORMAL_WEIGHTS) ; do \
 		for g in $(GROUPS) ; do \
 			expr 0 + `cat svg.d/$$g/baseline` + ${BASELINE_SHIFT} > work.d/splitted/$$w/$$g/baseline ;\

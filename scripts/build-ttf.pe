@@ -6,7 +6,7 @@ scaled_modules = [ "latin_proportional1", "latin_proportional2", \
 		   "latin_clear1", "latin_clear2" ]
 #		   "latin_mono_new1", "latin_mono_new2" ]
 
-hex = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+hex = ["0","1","2","3","4","5","6","7","8","9","k","j","m","g","s","x"];
 
 # create font
 New()
@@ -28,7 +28,7 @@ mod = 0; while (mod < SizeOf(modules))
 	moddir = "../../../splitted/" + _weight + "/" + modules[mod]
 	x = 0; while (x <= 0xf)
 		y = 0; while (y <= 0xf)
-			subdir = moddir + "/u" + hex[x] + hex[y]
+			subdir = moddir + "/" + hex[x] + hex[y]
 			if (FileAccess(subdir) == 0)
 				subdir_found = 1
 				baseline = subdir + "/baseline"
@@ -39,11 +39,11 @@ mod = 0; while (mod < SizeOf(modules))
 				if (FileAccess(baseline) == 0)
 					blh = LoadStringFromFile(baseline)
 					SelectChanged()
-					Move(0, StrTol(blh))
+					Move(0, Strtol(blh))
 					i = 0; while (i < SizeOf(scaled_modules))
 						if (modules[mod] == scaled_modules[i])
 							Scale(_scale_percentage)
-						endif			
+						endif
 					i++; endloop
 				endif
 			endif
