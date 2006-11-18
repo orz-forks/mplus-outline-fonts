@@ -5,6 +5,7 @@ scaled_modules = [ "latin_proportional1", "latin_proportional2", \
 		   "latin_monospace1", "latin_monospace2", \
 		   "latin_clear1", "latin_clear2" ]
 _kanji_scale_percentage = 100
+kanji_scaled_targets = [ "2p", "2c", "2m", "2mn" ]
 
 kanjiclass = ["k","j","m","h","x","y","g","s"]
 digit = ["0","1","2","3","4","5","6","7","8","9"]
@@ -40,7 +41,6 @@ mod = 0; while (mod < SizeOf(modules))
 			blh = LoadStringFromFile(baseline)
 			SelectChanged()
 			Move(0, Strtol(blh))
-			Scale(_kanji_scale_percentage)
 		    endif
 		endif
 	    y++; endloop
@@ -71,6 +71,16 @@ mod++; endloop
 set_fontnames()
 set_bearings()
 set_kernings()
+
+if (_kanji_scale_percentage != 100)
+    i = 0; while (i < SizeOf(kanji_scaled_targets))
+	prefix = "mplus-" + kanji_scaled_targets[i] + "-"
+	if (Strstr(_ttfname, prefix) == 0)
+		Select(0u4e00, 0u9fff)
+		Scale(_kanji_scale_percentage, 0,0)
+	endif
+    ++i; endloop
+endif
 
 Save("log.sfd")
 SelectAll(); RemoveOverlap(); RoundToInt()
