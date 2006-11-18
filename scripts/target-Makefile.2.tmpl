@@ -7,9 +7,9 @@ WEIGHT:=	%%WEIGHT%%
 
 SCRIPTS=	set_bearings set_kernings set_fontnames set_instructions
 MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
-.if defined(MPLUS_FULLSET)
+ifdef MPLUS_FULLSET
 MODULES+=	kanji
-.endif
+endif
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
 	/usr/local/bin/fontforge -script build-ttf.pe $@ $(MODULES)

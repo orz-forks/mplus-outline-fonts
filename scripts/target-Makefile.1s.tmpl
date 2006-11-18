@@ -11,7 +11,7 @@ MAKEFILES=	bold/Makefile medium/Makefile regular/Makefile light/Makefile thin/Ma
 all:: $(MAKEFILES)
 	for i in $(SUBDIRS) ;\
 	do \
-	(cd $$i && make) ;\
+	(cd $$i && $(MAKE)) ;\
 	done
 
 bold/Makefile: ${TEMPLATE}

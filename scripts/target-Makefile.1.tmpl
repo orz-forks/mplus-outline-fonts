@@ -11,7 +11,7 @@ MAKEFILES=	black/Makefile heavy/Makefile bold/Makefile medium/Makefile \
 all:: $(MAKEFILES)
 	for i in $(SUBDIRS) ;\
 	do \
-	(cd $$i && make) ;\
+	(cd $$i && $(MAKE)) ;\
 	done
 
 black/Makefile: ${TEMPLATE}

@@ -8,9 +8,9 @@ UNABRIDGED_GROUPS:=	hiragana1 katakana1 miscellaneous1 \
 ABRIDGED_GROUPS:=	latin_monospace1 latin_monospace2 \
 			latin_mono_new1 # latin_mono_new2
 OPTIONAL_GROUPS:=	kanji/k1
-.if defined(MPLUS_FULLSET)
+ifdef MPLUS_FULLSET
 UNABRIDGED_GROUPS+=	${OPTIONAL_GROUPS}
-.endif
+endif
 GROUPS:=		${UNABRIDGED_GROUPS} ${ABRIDGED_GROUPS}
 BLACK_WEIGHTS:=		black heavy
 NORMAL_WEIGHTS:=	bold medium regular light thin
@@ -23,14 +23,14 @@ BASELINE_SHIFT:=	58
 all: split-svgs ttf
 
 ttf: work.d/targets/mplus-1p/Makefile work.d/targets/mplus-2p/Makefile  work.d/targets/mplus-1m/Makefile work.d/targets/mplus-2m/Makefile work.d/targets/mplus-1c/Makefile work.d/targets/mplus-2c/Makefile work.d/targets/mplus-1mn/Makefile work.d/targets/mplus-2mn/Makefile
-	@(cd work.d/targets/mplus-1p ; make )
-	@(cd work.d/targets/mplus-2p ; make )
-	@(cd work.d/targets/mplus-1m ; make )
-	@(cd work.d/targets/mplus-2m ; make )
-	@(cd work.d/targets/mplus-1c ; make )
-	@(cd work.d/targets/mplus-2c ; make )
-	@(cd work.d/targets/mplus-1mn ; make)
-	@(cd work.d/targets/mplus-2mn ; make)
+	@(cd work.d/targets/mplus-1p ; $(MAKE))
+	@(cd work.d/targets/mplus-2p ; $(MAKE))
+	@(cd work.d/targets/mplus-1m ; $(MAKE))
+	@(cd work.d/targets/mplus-2m ; $(MAKE))
+	@(cd work.d/targets/mplus-1c ; $(MAKE))
+	@(cd work.d/targets/mplus-2c ; $(MAKE))
+	@(cd work.d/targets/mplus-1mn ; $(MAKE))
+	@(cd work.d/targets/mplus-2mn ; $(MAKE))
 
 work.d/targets/mplus-1p/Makefile: scripts/target-Makefile.1.tmpl 
 	sed s/^#Mplus-1P#// scripts/target-Makefile.1.tmpl > $@
@@ -77,8 +77,14 @@ dirs:
 		done \
 	done
 
+ifdef MPLUS_FULLSET
+SVGFILES=	svg.d/*/*.svg svg.d/*/*/*.svg
+else
+SVGFILES=	svg.d/*/*.svg
+endif
+
 split-svgs: dirs
-	perl -I scripts scripts/split-svg.pl svg.d/*/*.svg svg.d/*/*/*.svg
+	perl -I scripts scripts/split-svg.pl ${SVGFILES}
 	for w in $(NORMAL_WEIGHTS) ; do \
 		for g in $(GROUPS) ; do \
 			expr 0 + `cat svg.d/$$g/baseline` + ${BASELINE_SHIFT} > work.d/splitted/$$w/$$g/baseline ;\
@@ -99,4 +105,4 @@ clean-targets:
 rebuild-ttf: clean-targets dirs ttf
 
 release: ttf
-	@(cd release ; make )
+	@(cd release ; $(MAKE) )
