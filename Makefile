@@ -7,7 +7,8 @@ UNABRIDGED_GROUPS:=	hiragana1 katakana1 miscellaneous1 \
 			latin_full_clear1 latin_full_clear2
 ABRIDGED_GROUPS:=	latin_monospace1 latin_monospace2 \
 			latin_mono_new1 # latin_mono_new2
-OPTIONAL_GROUPS:=	kanji/k1
+OPTIONAL_GROUPS:=	kanji/k1 kanji/k2 kanji/k3 kanji/k4 kanji/k5 kanji/k6 \
+			kanji/j1 kanji/j2 kanji/j3 kanji/j4 kanji/j5
 ifdef MPLUS_FULLSET
 UNABRIDGED_GROUPS+=	${OPTIONAL_GROUPS}
 endif
