@@ -82,7 +82,7 @@ if (_kanji_scale_percentage != 100)
     ++i; endloop
 endif
 
-Save("log.sfd")
+Save(_ttfname:r + ".sfd")
 SelectAll(); RemoveOverlap(); RoundToInt()
 
 set_instructions()
