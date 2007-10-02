@@ -4,7 +4,7 @@ _scale_percentage = 100
 scaled_modules = [ "latin_proportional1", "latin_proportional2", \
 		   "latin_monospace1", "latin_monospace2", \
 		   "latin_clear1", "latin_clear2" ]
-_kanji_scale_percentage = 98
+_kanji_scale_percentage = 96
 kanji_scaled_targets = [ "2p", "2c", "2m", "2mn" ]
 
 kanjiclass = ["k","j","m","h","x","y","g","s"]
