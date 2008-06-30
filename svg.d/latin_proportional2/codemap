@@ -19,6 +19,10 @@
 
 # "diaeresis" to "macron"
 00A8.svg	0x00aeu
+# "degree" to "middle dot"
+00B0.svg	0x00b3u
+# "cedilla" to "inverted question"
+00B8.svg	0x00beu
 
 # "o-slash" to "y-diaeresis"
 00F8.svg        0x00fdu 0x00ffu
