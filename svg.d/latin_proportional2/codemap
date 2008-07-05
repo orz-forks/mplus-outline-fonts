@@ -31,6 +31,10 @@
 0108.svg	0x010eu
 # "D-stroke" to "e-dot above"
 0110.svg	0x0110u
+# "E-ognek" to "g-breve"
+0118.svg	0x011du 0x011fu
+# "G-dot above" to "h-stroke"
+0120.svg	0x0121u 0x0123u
 
 # "o-slash" to "y-diaeresis"
 00F8.svg        0x00fdu 0x00ffu
