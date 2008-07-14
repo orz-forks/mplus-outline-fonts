@@ -27,6 +27,9 @@
 00D0.svg	0x00d0u
 # "O-slash" to "germandbls"
 00D8.svg	0x00deu
+# "o-slash" to "y-diaeresis"
+00F8.svg        0x00fdu 0x00ffu
+
 # "C-circumflex" to "d-caron"
 0108.svg	0x010eu
 # "D-stroke" to "e-dot above"
@@ -42,5 +45,5 @@
 # "U-double acute" to "y-circumflex"
 0170.svg	0x0177u
 
-# "o-slash" to "y-diaeresis"
-00F8.svg        0x00fdu 0x00ffu
+# "O-dot above and macron" to ""
+0230.svg        0x0233u
