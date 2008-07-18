@@ -7,7 +7,7 @@ scaled_modules = [ "latin_proportional1", "latin_proportional2", \
 _kanji_scale_percentage = 98
 kanji_scaled_targets = [ "2p", "2c", "2m", "2mn" ]
 
-kanjiclass = ["k","j","m","h","x","y","g","s"]
+kanjiclass = ["k","j","m","h","x","y","g","s","l10","l20","l21"]
 digit = ["0","1","2","3","4","5","6","7","8","9"]
 
 # create font
