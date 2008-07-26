@@ -89,19 +89,23 @@
 0230.svg	0x0232u 0x0233u 0x0237u
 
 # "turned a" to "d with hook"
-0250.svg	0x0251u 0x0254u
+0250.svg	0x0251u 0x0254u 0x0255u
 # "reversed e" to "dotless j with stroke"
 0258.svg	0x0259u 0x025au 0x025bu
 # "g with hook" to "heng with hook"
 0260.svg	0x0261u
 # "i with stroke" to "turned m"
-0268.svg	0x026au
+0268.svg	0x026au 0x026fu
+# "turned m with long leg" to "closed omega"
+0270.svg	0x0270u 0x0274u
+# "phi" to "reversed r with fishhook"
+0278.svg	0x0278u 0x027au 0x027eu
 # "small R" to "turned t"
 0280.svg	0x0283u
 # "t with retroflex hook" to "small capitaly Y"
 0288.svg	0x028au 0x028cu 0x028du
 # "z with retroflex hook" to "stretched C"
-0290.svg	0x0292u
+0290.svg	0x0291u 0x0292u
 # "q with hook" to "tesh digraph"
 02A0.svg	0x02a3u 0x02a4u 0x02a6u 0x02a7u
 
