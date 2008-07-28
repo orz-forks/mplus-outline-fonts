@@ -89,26 +89,30 @@
 0230.svg	0x0232u 0x0233u 0x0237u
 
 # "turned a" to "d with hook"
-0250.svg	0x0251u 0x0254u 0x0255u
+0250.svg	0x0250u 0x0251u 0x0252u 0x0254u 0x0255u 0x0256u
 # "reversed e" to "dotless j with stroke"
-0258.svg	0x0259u 0x025au 0x025bu
+0258.svg	0x0258u 0x0259u 0x025au 0x025bu 0x025cu 0x025fu
 # "g with hook" to "heng with hook"
-0260.svg	0x0261u
+0260.svg	0x0261u 0x0265u
 # "i with stroke" to "turned m"
-0268.svg	0x026au 0x026fu
+0268.svg	0x026au 0x026du 0x026fu
 # "turned m with long leg" to "closed omega"
 0270.svg	0x0270u 0x0274u
 # "phi" to "reversed r with fishhook"
-0278.svg	0x0278u 0x027au 0x027eu
+0278.svg	0x0278u 0x027au 0x027du 0x027eu
 # "small R" to "turned t"
 0280.svg	0x0283u
 # "t with retroflex hook" to "small capitaly Y"
-0288.svg	0x028au 0x028cu 0x028du
+0288.svg	0x028au 0x028cu 0x028du 0x028eu
 # "z with retroflex hook" to "stretched C"
 0290.svg	0x0291u 0x0292u
 # "q with hook" to "tesh digraph"
-02A0.svg	0x02a3u 0x02a4u 0x02a6u 0x02a7u
+02A0.svg	0x02a3u 0x02a4u 0x02a6u 0x02a7u 0x02a5u
+# "tc digraph with curl" to "turned h with fishhook and tail"
+02A8.svg	0x02a8u
 
+# "modifier h" to "modifier w"
+02B0.svg	0x02b2u 0x02b7u
 # "glottal stop" to "caron"
 02C0.svg	0x02c6u 0x02c7u
 # "vertical line" to "low acute accent"
@@ -118,8 +122,13 @@
 # "breve" to "cross accent"
 02D8.svg	0x02d8u 0x02d9u 0x02dau 0x02dbu 0x02dcu 0x02ddu
 
+# "combining candrabindu" to "combining acute xccent below"
+0310.svg	0x0311u
 # "combining double tilde" to "combining u"
 0360.svg	0x0361u
+
+# "greek theta" to "greek omicron"
+03B8.svg	0x03b8u
 
 # "hyphen" to "double low line"
 2010.svg	0x2010u 0x2011u 0x2012u 0x2013u 0x2014u 0x2015u 0x2016u 0x2017u
