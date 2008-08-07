@@ -577,8 +577,44 @@ uni02E2   45   45    45   45    45   45    45   45    45   45    45   45    45  
 uni02E3   40   40    40   40    40   40    40   40    40   40    40   40    40   40
 uni02E4   45   35    45   35    45   35    45   35    45   35    45   35    45   35
 
+### "modifier raised colon" to "modifier low left arrow"
+uni02F9  105   70   105   70   105   70   105   70   105   70   105   70   105   70
+uni02FA   70  105    70  105    70  105    70  105    70  105    70  105    70  105
+uni02FB  105   70   105   70   105   70   105   70   105   70   105   70   105   70
+uni02FC   70  105    70  105    70  105    70  105    70  105    70  105    70  105
+
+### "combining grave accent" to "combining dot above"
+uni0306    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
+### "combining diaeresis" to "combiningdouble grave accent"
+uni030A    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
 ### "combining candrabindu" to "combining acute xccent below"
 uni0311    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
+### "combining left tack below" to "combining plus below"
+uni0318    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni0319    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni031A    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni031C    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni031D    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni031E    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni031F    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
+### "combining minus below" to "combining cedilla"
+uni0320    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni0325    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
+### "combining ogonek" to "combining inverted breve below"
+uni032A    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni032C    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni032D    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni032E    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni032F    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+
+### "combining long solidus overlay" to "combining double overline"
+uni0339    0    0     0    0     0    0     0    0     0    0     0    0     0    0
+uni033A    0    0     0    0     0    0     0    0     0    0     0    0     0    0
 
 ### "combining double tilde" to "combining u"
 uni0361    0    0     0    0     0    0     0    0     0    0     0    0     0    0
@@ -609,12 +645,12 @@ uni201F   35   60    35   60    35   60    35   60    35   60    35   60    35  
 ### "dagger" to "hyphenation point"
 uni2020   55   55    55   55    55   55    55   55    55   55    55   55    55   55
 uni2021   65   65    65   65    65   65    65   65    65   65    65   65    65   65
-uni2022   55   55    55   55    55   55    55   55    55   55    55   55    55   55
-uni2023   90   60    90   60    90   60    90   60    90   60    90   60    90   60
+uni2022  120  120   120  120   120  120   120  120   120  120   120  120   120  120
+uni2023  130   90   130   90   130   90   130   90   130   90   130   90   130   90
 uni2024  +0 w1005   +0 w1002    +0 w999    +0 w996    +0 w993    +0 w990    +0 w987
 uni2025  +0 w1005   +0 w1002    +0 w999    +0 w996    +0 w993    +0 w990    +0 w987
 uni2026  +0 w1005   +0 w1002    +0 w999    +0 w996    +0 w993    +0 w990    +0 w987
-uni2027   90   90    90   90    90   90    90   90    90   90    90   90    90   90
+uni2027  125  125   125  125   125  125   125  125   125  125   125  125   125  125
 
 ### "per mille" to "reversed triple prime"
 uni2030   35   35    35   35    35   35    35   35    35   35    35   35    35   35
