@@ -153,6 +153,8 @@
 # "combining double tilde" to "combining u"
 0360.svg	0x0361u
 
+# "greek PSI" to "greek iota-tonos"
+03A8.svg	0x03a9u
 # "greek theta" to "greek omicron"
 03B8.svg	0x03b8u
 
@@ -165,13 +167,22 @@
 # "per mille" to "reversed triple prime"
 2030.svg	0x2030u 0x2031u 0x2032u 0x2033u 0x2034u 0x2035u 0x2036u 0x2037u
 # "caret" to "undertie"
-2038.svg	0x2039u 0x203au
+2038.svg	0x2039u 0x203au 0x203cu 0x203du 0x203eu 0x203fu
+
+# "superscript eight" to "superscript n"
+2078.svg	0x207fu
 
 # "rupee" to "drachma"
 20A8.svg	0x20acu
 
+# "account of" to "euler constant"
+2100.svg	0x2103u
+
+# "scruple" to "planck constant over two pi"
+2108.svg	0x2109u
+
 # "service" to "sound recording copyright"
-2120.svg	0x2122u
+2120.svg	0x2122u 0x2126u 0x2127u
 
 # "ligature ff" to "ligature st"
 FB00.svg	0xfb00u 0xfb01u 0xfb02u 0xfb03u 0xfb04u
