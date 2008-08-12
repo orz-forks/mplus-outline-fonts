@@ -197,6 +197,20 @@
 2240.svg	0x2242u 0x2243u 0x2245u
 # "almost equal to" to "difference between"
 2248.svg	0x2248u
+# "not equal to" to "greater-than over equal to"
+2260.svg	0x2260u 0x2264u 0x2265u 0x2266u 0x2267u
+# "n-ary logical and" to "division times"
+22C0.svg	0x22c5u
+# "precedes but not equivalent to" to midline horizontal ellipsis"
+22E8.svg	0x22eeu 0x22efu
+
+# "diameter" to "wavy line"
+2300.svg	0x2300u
+# "keyboard" to "benzene ring"
+2328.svg	0x2329u 0x232au
+
+# "v-right hook" to ""
+2C70.svg	0x2c71u
 
 # "ligature ff" to "ligature st"
 FB00.svg	0xfb00u 0xfb01u 0xfb02u 0xfb03u 0xfb04u

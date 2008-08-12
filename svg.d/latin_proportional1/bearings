@@ -699,7 +699,7 @@ uni21B4  110   90   110   90   110   90   110   90   110   90   110   90   110  
 uni21B5   60  140    60  140    60  140    60  140    60  140    60  140    60  140
 
 ### "for all" to "nabla"
-uni2205   40   40    40   40    40   40    40   40    40   40    40   40    40   40
+uni2205   15   15    15   15    15   15    15   15    15   15    15   15    15   15
 
 ### "n-ary coproduct" to "asterisk operator"
 uni2212   75   75    75   75    75   75    75   75    75   75    75   75    75   75
@@ -716,6 +716,30 @@ uni2245   85   85    85   85    85   85    85   85    85   85    85   85    85  
 
 ### "almost equal to" to "difference between"
 uni2248   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+
+### "not equal to" to "greater-than over equal to"
+uni2260   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+uni2264   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+uni2265   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+uni2266   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+uni2267   85   85    85   85    85   85    85   85    85   85    85   85    85   85
+
+### "n-ary logical and" to "division times"
+uni22C5   90   90    90   90    90   90    90   90    90   90    90   90    90   90
+
+### "precedes but not equivalent to" to midline horizontal ellipsis"
+uni22EE  +0 w1005   +0 w1002    +0 w999    +0 w996    +0 w993    +0 w990    +0 w987
+uni22EF  +0 w1005   +0 w1002    +0 w999    +0 w996    +0 w993    +0 w990    +0 w987
+
+### "diameter" to "wavy line"
+uni2300   15   15    15   15    15   15    15   15    15   15    15   15    15   15
+
+### "keyboard" to "benzene ring"
+uni2329   30   35    30   35    30   35    30   35    30   35    30   35    30   35
+uni232A   35   30    35   30    35   30    35   30    35   30    35   30    35   30
+
+### "v-right hook" to ""
+uni2C71   30   20    30   20    30   20    30   20    30   20    30   20    30   20
 
 ### "ligature ff" to "ligature st"
 uniFB00   50   65    50   65    50   65    50   65    50   65    50   65    50   65
