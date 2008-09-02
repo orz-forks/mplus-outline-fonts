@@ -258,6 +258,10 @@
 2210.svg	0x2212u 0x2213u 0x2217u
 # "ring operator" to "right angle"
 2218.svg	0x2218u	0x2219u 0x221au 0x221bu 0x221cu 0x221du 0x221eu
+# "angle" to "logical and"
+2220.svg	0x2227u
+# "logical or" to "surface integral"
+2228.svg	0x2228u
 # "dot minus" to "sine wave"
 2238.svg	0x223cu
 # "wreath product" to "neither approximately nor actually equal to"
@@ -265,7 +269,15 @@
 # "almost equal to" to "difference between"
 2248.svg	0x2248u
 # "not equal to" to "greater-than over equal to"
-2260.svg	0x2260u 0x2264u 0x2265u 0x2266u 0x2267u
+2260.svg	0x2260u 0x2261u 0x2262u 0x2264u 0x2265u 0x2266u 0x2267u
+# "square original of" to "circled times"
+2290.svg	0x2295u 0x2296u 0x2297u
+# "circled division slash" to "squared minus"
+2298.svg	0x2298u
+# "squared times" to "models"
+22A0.svg	0x22a2u 0x22a3u 0x22a4u 0x22a5u
+# "multimap" to "right triangle"
+22B8.svg	0x22bbu 0x22bcu 0x22bdu
 # "n-ary logical and" to "division times"
 22C0.svg	0x22c5u
 # "precedes but not equivalent to" to midline horizontal ellipsis"
@@ -275,6 +287,9 @@
 2300.svg	0x2300u
 # "keyboard" to "benzene ring"
 2328.svg	0x2329u 0x232au
+
+# "delete" to "delete form two"
+2420.svg	0x2423u
 
 # "v-right hook" to ""
 2C70.svg	0x2c71u
