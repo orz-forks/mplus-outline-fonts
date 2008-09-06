@@ -17,63 +17,56 @@
 # y
 0078.svg	0x0079u
 
-# "diaeresis" to "macron"
+# Latin-1 Supplement
 00A8.svg	0x00aeu
-# "degree" to "middle dot"
 00B0.svg	0x00b3u
-# "cedilla" to "inverted question"
 00B8.svg	0x00beu
-# "Eth" to "multiply"
 00D0.svg	0x00d0u
-# "O-slash" to "germandbls"
 00D8.svg	0x00deu
-# "o-slash" to "y-diaeresis"
-00F8.svg        0x00fdu 0x00ffu
+00F8.svg	0x00fdu 0x00ffu
 
-# "C-circumflex" to "d-caron"
+# Latin Extended-A
 0108.svg	0x010eu
-# "D-stroke" to "e-dot above"
 0110.svg	0x0110u
-# "E-ognek" to "g-breve"
 0118.svg	0x011du 0x011fu
-# "G-dot above" to "h-stroke"
 0120.svg	0x0121u 0x0123u
-# "O-double acute" to "r-cedilla"
 0150.svg	0x0154u 0x0156u
-# "R-caron" to "s-cedilla"
 0158.svg	0x0158u
-# "U-double acute" to "y-circumflex"
 0170.svg	0x0177u
 
-# "O-dot above and macron" to ""
-0230.svg        0x0233u
+# Latin Extended-B
+0230.svg	0x0233u
 
-# "g with hook" to "heng with hook"
-#0260.svg	0x0261u
-# "small R" to "turned t"
+# IPA Extensions
 0280.svg	0x0280u 0x0281u
-# "bilabial click" to "small L"
 0298.svg	0x0299u
 
-# "modifier h" to "modifier w"
+# Spacing Modifier Letters
 02B0.svg	0x02b6u
-# "modifier y" to "modifier left half ring"
 02B8.svg	0x02b8u
 
-# "greek iota-dialytika and tonos" to "greek ETA"
+# Greek and Coptic
 0390.svg	0x0392u
-# "greek "THETA" to "greek OMICRON"
 0398.svg	0x039cu
-# "greek PI" to "greek CHI"
 03A0.svg	0x03a1u
-# "greek sho" to "greek ""
 03F0.svg	0x03f7u
 
-# "service" to "sound recording copyright"
-2120.svg	0x2122u
+# Cyrillic
+0410.svg	0x0412u
+0418.svg	0x041cu
+0420.svg	0x0420u
+0428.svg	0x042fu
+0430.svg	0x0432u
+0438.svg	0x043cu
+0440.svg	0x0443u
+0448.svg	0x044fu
+0458.svg	0x045eu
+04E8.svg	0x04efu
+04F0.svg	0x04f1u 0x04f3u
 
-# "double-struck italic i" to ""
+# Letterlike Symbols
+2120.svg	0x2122u
 2148.svg	0x214bu
 
-# "ring operator" to "right angle"
+# Mathematical Operators
 2218.svg	0x221bu
