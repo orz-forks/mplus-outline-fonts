@@ -12,7 +12,7 @@ digit = ["0","1","2","3","4","5","6","7","8","9"]
 
 # create font
 New()
-Reencode("unicode")
+Reencode("unicode4")
 # ScaleToEm(880, 120)
 
 _weight = Strsub($1:r, Strrstr($1:r,"-")+1)
