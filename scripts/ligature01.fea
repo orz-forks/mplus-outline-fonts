@@ -1,0 +1,14 @@
+lookup ligature {
+ lookupflag 0;
+    sub f i   by fi;
+    sub f l   by fl;
+    sub f f   by ff; 
+    sub f f i   by ffi; 
+    sub f f l   by ffl;
+} ligature;
+
+feature liga {
+  script latn;
+    language dflt;
+        lookup ligature;
+} liga;

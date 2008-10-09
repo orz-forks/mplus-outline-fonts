@@ -1,0 +1,3 @@
+if (SelectIf("ff", "fi", "fl", "ffi", "ffl") == 5)
+	MergeFeature("ligature01.fea")
+endif

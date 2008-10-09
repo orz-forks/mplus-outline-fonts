@@ -62,9 +62,6 @@ work.d/targets/mplus-1mn/Makefile: scripts/target-Makefile.1s.tmpl
 work.d/targets/mplus-2mn/Makefile: scripts/target-Makefile.1s.tmpl 
 	sed s/^#Mplus-2mN#// scripts/target-Makefile.1s.tmpl > $@
 
-Makefile: scripts/target-Makefile.1s.tmpl 
-	sed s/^#Mplus-2mN#// scripts/target-Makefile.1s.tmpl > $@
-
 dirs:
 	for w in $(NORMAL_WEIGHTS) ; do \
 		for g in $(GROUPS) ; do \
