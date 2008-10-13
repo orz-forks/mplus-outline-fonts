@@ -88,7 +88,7 @@ SelectAll(); RemoveOverlap(); RoundToInt()
 set_ligatures()
 set_instructions()
 
-Generate(_ttfname, "", 0x94)
+Generate(_ttfname, "", 0x84)
 
 # Punctuations are interpreted as 'DFLT' script when they are kerned normally,
 # but when it is read from "kern" table, they are interpreted as 'latn'.
