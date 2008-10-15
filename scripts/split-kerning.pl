@@ -15,6 +15,10 @@ $weight = shift;
 
 %weight_columns = ( 'black' => 0, 'heavy' => 1, 'bold' => 2, 'medium' => 3,
 		    'regular' => 4, 'light' => 5, 'thin' => 6);
+
+print "AddLookup(\"kerning pairs\", \"gpos_pair\", 0, [[\"kern\", [[\"latn\", [\"dflt\"]]]]])\n";
+print "AddLookupSubtable(\"kerning pairs\", \"kp\")\n";
+
 while (<ARGV>) {
     next if /^###/ || /^\s*$/;
     while ($_ =~ s/\\\s*$//) {
@@ -30,7 +34,7 @@ while (<ARGV>) {
 	$L = $names_subst{$L} if defined $names_subst{$L};
 	foreach $R (@second) {
 	    $R = $names_subst{$R} if defined $names_subst{$R};
-	    print "Select(\"$L\"); SetKern(\"$R\", Round($kerns[$col]*_scale_percentage/100.0))\n";
+	    print "Select(\"$L\"); SetKern(\"$R\", Round($kerns[$col]*_scale_percentage/100.0),\"kp\")\n";
 	}
     }
 }

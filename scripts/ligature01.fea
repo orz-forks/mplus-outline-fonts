@@ -11,4 +11,16 @@ feature liga {
   script latn;
     language dflt;
         lookup ligature;
+  script grek;
+    language dflt;
+        lookup ligature;
+  script cyrl;
+    language dflt;
+        lookup ligature;
+  script kana;
+    language dflt;
+        lookup ligature;
+  script hani;
+    language dflt;
+        lookup ligature;
 } liga;
