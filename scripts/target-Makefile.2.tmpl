@@ -5,7 +5,7 @@ MODULES_LATIN:=	%%MODULES_LATIN%%
 
 WEIGHT:=	%%WEIGHT%%
 
-SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_instructions
+SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_vert_chars set_instructions
 SCRIPTS+=	ligature01.fea
 MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
 ifdef MPLUS_FULLSET
@@ -26,6 +26,9 @@ build-ttf.pe: ../../../../scripts/build-ttf.pe
 
 set_ligatures: ../../../../scripts/set_ligatures
 	ln -s ../../../../scripts/set_ligatures $@
+
+set_vert_chars: ../../../../svg.d/miscellaneous1/vbearings
+	perl ../../../../scripts/split-vbearing.pl ${WEIGHT} $(MODULES) > $@
 
 ligature01.fea: ../../../../scripts/ligature01.fea
 	ln -s ../../../../scripts/ligature01.fea $@

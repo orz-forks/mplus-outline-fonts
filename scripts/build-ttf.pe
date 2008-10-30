@@ -71,6 +71,7 @@ mod++; endloop
 set_fontnames()
 set_bearings()
 set_kernings()
+set_vert_chars()
 
 if (_kanji_scale_percentage != 100)
     i = 0; while (i < SizeOf(kanji_scaled_targets))
