@@ -77,8 +77,14 @@ if (_kanji_scale_percentage != 100)
     i = 0; while (i < SizeOf(kanji_scaled_targets))
 	prefix = "mplus-" + kanji_scaled_targets[i] + "-"
 	if (Strstr(_ttfname, prefix) == 0)
-		Select(0u4e00, 0u9fff)
-		Scale(_kanji_scale_percentage, 0,0)
+		SelectWorthOutputting() 
+		foreach 
+			u = GlyphInfo("Unicode") 
+			if (u >= 0u4e00 && u <= 0u9eff) 
+				Scale(_kanji_scale_percentage, $em/2, 0) 
+				SetWidth($em) 
+			endif 
+		endloop
 	endif
     ++i; endloop
 endif
