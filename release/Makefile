@@ -47,11 +47,11 @@ FONTS=	../work.d/targets/mplus-1p/black/mplus-1p-black.ttf \
  	../work.d/targets/mplus-1mn/regular/mplus-1mn-regular.ttf \
  	../work.d/targets/mplus-1mn/light/mplus-1mn-light.ttf \
  	../work.d/targets/mplus-1mn/thin/mplus-1mn-thin.ttf
-#	../work.d/targets/mplus-2mn/bold/mplus-2mn-bold.ttf \
-#	../work.d/targets/mplus-2mn/medium/mplus-2mn-medium.ttf \
-#	../work.d/targets/mplus-2mn/regular/mplus-2mn-regular.ttf \
-#	../work.d/targets/mplus-2mn/light/mplus-2mn-light.ttf \
-#	../work.d/targets/mplus-2mn/thin/mplus-2mn-thin.ttf
+	../work.d/targets/mplus-2mn/bold/mplus-2mn-bold.ttf \
+	../work.d/targets/mplus-2mn/medium/mplus-2mn-medium.ttf \
+	../work.d/targets/mplus-2mn/regular/mplus-2mn-regular.ttf \
+	../work.d/targets/mplus-2mn/light/mplus-2mn-light.ttf \
+	../work.d/targets/mplus-2mn/thin/mplus-2mn-thin.ttf
 
 release: 
 	mkdir -p ${RELEASE}
