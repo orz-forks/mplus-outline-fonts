@@ -16,12 +16,11 @@ die "No module specified:" if (scalar @ARGV == 0);
 
 %weight_columns = ( 'black' => 0, 'heavy' => 2, 'bold' => 4, 'medium' => 6, 
 		    'regular' => 8, 'light' => 10, 'thin' => 12);
-$T = $weight_columns{$weight};
-$R = $T+1;
+$DX = $weight_columns{$weight};
+$DY = $DX + 1;
 
-print "Select(\"uni30FB\"); bbox = GlyphInfo(\"BBox\")\n";
-print "xcenter = (bbox[0] + bbox[2]) / 2\n";
-print "ycenter = (bbox[1] + bbox[3]) / 2\n";
+print "xcenter = \$em / 2\n";
+print "ycenter = (\$ascent - \$descent) / 2\n";
 print "AddLookup(\"gsubvert\", \"gsub_single\", 0, [[\"vert\", [[\"kana\", [\"dflt\", \"JAN \"]]]]])\n";
 print "AddLookupSubtable(\"gsubvert\", \"j-vert\")\n";
 print "\n";
@@ -30,6 +29,7 @@ foreach $arg (@ARGV) {
     open(BEARINGS, "<$arg") or die "can't open $arg";
     $cspace = $arg; $cspace =~ s/bearings$/charspaces/;
 
+#   print "SetFontHasVerticalMetrics(1)\n";
     while ($_ = <BEARINGS>) {
 	next if /^###/ || /^\s*$/;
 
@@ -47,10 +47,9 @@ foreach $arg (@ARGV) {
 	    }
 	}
 
-	if (defined $bearings[$T]) {
-	    print "bbox = GlyphInfo(\"BBox\")\n";
-	    print ("Move(\$em - bbox[2] + $bearings[$R], \$ascent - bbox[3]+ $bearings[$T])\n");
-	    print ("SetWidth(\$em)\n");
+	if (defined $bearings[$DX]) {
+	    print ("Move($bearings[$DX], $bearings[$DY])\n");
+	    print "SetWidth(\$em)\n";
 	}
 
 	print "Reencode(\"unicode4\")\n";

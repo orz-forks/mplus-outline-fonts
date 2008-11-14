@@ -50,11 +50,11 @@ foreach $arg (@ARGV) {
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
 	print "Select(\"$ch\")\n";
 	$bearings[$L] += $dLSB;  $bearings[$R] += $dRSB;
-	print "SetLBearing(Round($bearings[$L]*_scale_percentage/100.0), $l_is_relative)\n";
+	print "SetLBearing($bearings[$L], $l_is_relative)\n";
 	if ($r_is_width) {
-	    print "SetWidth(Round($bearings[$R]*_scale_percentage/100.0), $r_is_relative)\n";
+	    print "SetWidth($bearings[$R], $r_is_relative)\n";
 	} else {
-	    print "SetRBearing(Round($bearings[$R]*_scale_percentage/100.0), $r_is_relative)\n";
+	    print "SetRBearing($bearings[$R], $r_is_relative)\n";
 	}
     }
     close BEARINGS;

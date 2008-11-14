@@ -1,9 +1,5 @@
 #!/usr/local/bin/fontforge -script
 
-_scale_percentage = 100
-scaled_modules = [ "latin_proportional1", "latin_proportional2", \
-		   "latin_monospace1", "latin_monospace2", \
-		   "latin_clear1", "latin_clear2" ]
 _kanji_scale_percentage = 98
 kanji_scaled_targets = [ "2p", "2c", "2m", "2mn" ]
 
@@ -13,7 +9,7 @@ digit = ["0","1","2","3","4","5","6","7","8","9"]
 # create font
 New()
 Reencode("unicode4")
-# ScaleToEm(880, 120)
+ScaleToEm(860, 140)
 
 _weight = Strsub($1:r, Strrstr($1:r,"-")+1)
 _ttfname = $1
@@ -26,45 +22,18 @@ endloop
 
 # load SVG files in each module
 mod = 0; while (mod < SizeOf(modules))
-    subdir_found = 0;
     moddir = "../../../splitted/" + _weight + "/" + modules[mod]
     if (modules[mod] == "kanji")
 	x = 0; while (x < SizeOf(kanjiclass))
 	    y = 0; while (y < 10)
 	        subdir = moddir + "/" + kanjiclass[x] + digit[y]
 	        if (FileAccess(subdir) == 0)
-		    subdir_found = 1
-		    SelectAll(); SetGlyphChanged(0)
 		    $trace=0; Import(subdir + "/u*.svg"); $trace=0
-		    baseline = subdir + "/baseline"
-		    if (FileAccess(baseline) == 0)
-			blh = LoadStringFromFile(baseline)
-			SelectChanged()
-			Move(0, Strtol(blh))
-		    endif
 		endif
 	    y++; endloop
 	x++; endloop
     else
-	/* AD HOC change. I'll fix soon */
-	    if (modules[mod] == "latin_proportional2") 
-		Select("3"); Clear()
-		Select("M"); Clear()
-	    endif
-	/*   end  of  AD  HOC  change   */
-	baseline = moddir + "/baseline"
-	SelectAll(); SetGlyphChanged(0)
 	$trace=0; Import(moddir + "/u*.svg"); $trace=0
-	if (FileAccess(baseline) == 0)
-	    blh = LoadStringFromFile(baseline)
-	    SelectChanged(0)
-	    Move(0, Strtol(blh))
-	    i = 0; while (i < SizeOf(scaled_modules))
-		if (modules[mod] == scaled_modules[i])
-		    Scale(_scale_percentage)
-		endif
-	    i++; endloop
-	endif
     endif
 mod++; endloop
 
@@ -77,13 +46,13 @@ if (_kanji_scale_percentage != 100)
     i = 0; while (i < SizeOf(kanji_scaled_targets))
 	prefix = "mplus-" + kanji_scaled_targets[i] + "-"
 	if (Strstr(_ttfname, prefix) == 0)
-		SelectWorthOutputting() 
-		foreach 
-			u = GlyphInfo("Unicode") 
-			if (u >= 0u4e00 && u <= 0u9eff) 
-				Scale(_kanji_scale_percentage, $em/2, 0) 
-				SetWidth($em) 
-			endif 
+		SelectWorthOutputting()
+		foreach
+			u = GlyphInfo("Unicode")
+			if (u >= 0u4e00 && u <= 0x9eff)
+				Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
+				SetWidth($em)
+			endif
 		endloop
 	endif
     ++i; endloop
@@ -96,10 +65,5 @@ set_ligatures()
 set_instructions()
 
 Generate(_ttfname, "", 0x84)
-
-# Punctuations are interpreted as 'DFLT' script when they are kerned normally,
-# but when it is read from "kern" table, they are interpreted as 'latn'.
-#Close(); Open(_ttfname)
-#Generate(_ttfname, "", 0x84)
 
 Quit()

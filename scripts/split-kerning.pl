@@ -34,7 +34,7 @@ while (<ARGV>) {
 	$L = $names_subst{$L} if defined $names_subst{$L};
 	foreach $R (@second) {
 	    $R = $names_subst{$R} if defined $names_subst{$R};
-	    print "Select(\"$L\"); SetKern(\"$R\", Round($kerns[$col]*_scale_percentage/100.0),\"kp\")\n";
+	    print "Select(\"$L\"); SetKern(\"$R\", $kerns[$col],\"kp\")\n";
 	}
     }
 }

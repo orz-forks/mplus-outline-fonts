@@ -2,6 +2,7 @@ package SVG;
 
 use strict;
 use Carp;
+use File::Basename;
 
 my @weights = qw(black heavy bold medium regular light thin);
 
@@ -22,6 +23,7 @@ sub new {
     my $codes = $codemap->get_codes($filename);
     my $dumpdir = undef;
     my $logfilename = undef;
+    my $blshift = 0;
 
     my @frames = _get_frames($svg);
     my @cols = _uniq(sort { $a <=> $b } map {$_->[0]} @frames);
@@ -29,8 +31,15 @@ sub new {
 
     if ($#$codes > $#cols) {
 	croak "number of codes exceeds the number of columns: ";
-    } elsif ($#rows > 6) {
+    } elsif ($#rows > $#weights) {
 	croak "too many rows (max = 7: thin, light, ..., black): ";
+    }
+
+    my $bl = dirname($filename). "/baseline";
+    if (-e $bl) {
+    	open(BASELINE, "<$bl") or croak "can't open baseline file $bl";
+	$blshift = <BASELINE> / 10.0;
+	close BASELINE;
     }
 
     my $this = bless {
@@ -43,6 +52,7 @@ sub new {
 	missing_weights => $#weights - $#rows,
 	dumpdir => $dumpdir,
 	logfilename => $logfilename,
+	baseline_shift => $blshift,
     }, $class;
     return $this;
 }
@@ -59,6 +69,7 @@ sub clone {
 	cols => $this->{cols},
 	logfilename => $this->{logfilename},
 	dumpdir => $this->{dumpdir},
+	baseline_shift => $this->{baseline_shift},
     };
     return $clone;
 }
@@ -67,6 +78,7 @@ sub clip {
     my $this = shift;
     my $row = shift;
     my $col = shift;
+    my $blshift = $this->{baseline_shift};
 
     my ($weight, $unicode);
     my $region = undef;
@@ -79,15 +91,15 @@ sub clip {
 	}
     }
     $this->{svg} =~ s/<\s*path\s/<PATH /g;
-    while ($this->{svg} =~ s/(<\s*PATH\b[^>]*>)/_select_path($1,$region)/se) {
+    while ($this->{svg} =~ s/(<\s*PATH\b[^>]*>)/_select_path($1,$region,$blshift)/se) {
 	;
     }
     $this->{svg} =~ s/<\s*polygon\s/<POLYGON /g;
-    while ($this->{svg} =~ s/(<\s*POLYGON\b[^>]*>)/_select_poly($1,$region)/se) {
+    while ($this->{svg} =~ s/(<\s*POLYGON\b[^>]*>)/_select_poly($1,$region,$blshift)/se) {
 	;
     }
     $this->{svg} =~ s/<\s*rect\s([^>l]*\/>)/<RECT $1/g; 	# without 'fill="none"'
-    while ($this->{svg} =~ s/(<\s*RECT\b[^>]*>)/_select_rect($1,$region)/se) {
+    while ($this->{svg} =~ s/(<\s*RECT\b[^>]*>)/_select_rect($1,$region,$blshift)/se) {
 	;
     }
     $this->{svg} = _set_region($this->{svg}, $region->[2], $region->[3]);
@@ -209,7 +221,7 @@ sub _get_property {
     }
 }
 
-# frame ($BEI$j$D$V$7$N$J$$(B rect) $B$N0lMw$r3MF@(B
+# frame (ÅÉ¤ê¤Ä¤Ö¤·¤Î¤Ê¤¤ rect) ¤Î°ìÍ÷¤ò³ÍÆÀ
 sub _get_frames {
     my @rectangles;
     my $svg = $_[0];
@@ -222,12 +234,12 @@ sub _get_frames {
 		     _get_property($rect, "height"));
 	push(@rectangles, \@array);
     }
-    # $B2#=q$-=g$K%=!<%H(B
+    # ²£½ñ¤­½ç¤Ë¥½¡¼¥È
     return sort { $a->[0] <=> $b->[0] || $b->[1] <=> $a->[1] } @rectangles;
 }
 
 sub _select_path {
-    my ($path, $region) = @_;
+    my ($path, $region, $blshift) = @_;
     my ($minx, $miny, $maxx, $maxy) = ($region->[0], $region->[1],
 				       $region->[0] + $region->[2],
 				       $region->[1] + $region->[3]);
@@ -237,7 +249,7 @@ sub _select_path {
         if ($minx <= $x && $x <= $maxx &&
 	    $miny <= $y && $y <= $maxy) {
 	    $path =~ s/PATH/path/s;
-	    return _move_path($path, -$minx, -$miny);
+	    return _move_path($path, -$minx, -$miny-$blshift);
 	} else {
 	    return "<!-- out of boundary -->";
 	}
@@ -246,7 +258,7 @@ sub _select_path {
 }
 
 sub _select_poly {
-    my ($poly, $region) = @_;
+    my ($poly, $region, $blshift) = @_;
     my ($minx, $miny, $maxx, $maxy) = ($region->[0], $region->[1],
 				       $region->[0] + $region->[2],
 				       $region->[1] + $region->[3]);
@@ -256,7 +268,7 @@ sub _select_poly {
 	    $miny <= $points[1] && $points[1] <= $maxy) {
 	    my $i;
 	    for ($i = 0; $i <= $#points; $i++) {
-		$points[$i] -= ($i % 2 == 0) ? $minx : $miny;
+		$points[$i] -= ($i % 2 == 0) ? $minx : $miny + $blshift;
 	    }
 	    my $tmp = join(' ', @points);	 # ff-20051012 require that
 	    $tmp =~ s/(\S+)\s+(\S+)/$1,$2/sg;    # x,y are separated by comma
@@ -276,7 +288,7 @@ sub _transform {
 }
 
 sub _select_rect {
-    my ($rect, $region) = @_;
+    my ($rect, $region, $blshift) = @_;
     my ($minx, $miny, $maxx, $maxy) = ($region->[0], $region->[1],
 				       $region->[0] + $region->[2],
 				       $region->[1] + $region->[3]);
@@ -296,11 +308,11 @@ sub _select_rect {
 	    my $h = _get_property($rect, "height");
 	    if (!defined $trans) {
 		$x -= $minx;
-		$y -= $miny;
+		$y -= $miny + $blshift;
 		return "<rect x=\"$x\" y=\"$y\" width=\"$w\" height=\"$h\"/>";
 	    } else {
 		$tmat[4] -= $minx;
-		$tmat[5] -= $miny;
+		$tmat[5] -= $miny + $blshift;
 		return "<rect x=\"$x\" y=\"$y\" width=\"$w\" height=\"$h\" transform=\"matrix(@tmat)\"/>";
 	    }
 	} else {
