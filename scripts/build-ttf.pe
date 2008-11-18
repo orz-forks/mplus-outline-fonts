@@ -1,9 +1,8 @@
 #!/usr/local/bin/fontforge -script
 
 _kanji_scale_percentage = 98
-kanji_scaled_targets = [ "2p", "2c", "2m", "2mn" ]
-
 kanjiclass = ["k","j","m","h","x","y","g","s","l10","l20","l21"]
+
 digit = ["0","1","2","3","4","5","6","7","8","9"]
 
 # create font
@@ -43,19 +42,16 @@ set_kernings()
 set_vert_chars()
 
 if (_kanji_scale_percentage != 100)
-    i = 0; while (i < SizeOf(kanji_scaled_targets))
-	prefix = "mplus-" + kanji_scaled_targets[i] + "-"
-	if (Strstr(_ttfname, prefix) == 0)
-		SelectWorthOutputting()
-		foreach
-			u = GlyphInfo("Unicode")
-			if (u >= 0u4e00 && u <= 0x9eff)
-				Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
-				SetWidth($em)
-			endif
-		endloop
-	endif
-    ++i; endloop
+    if (Strstr(_ttfname, "mplus-2") == 0)
+	SelectWorthOutputting()
+	foreach
+	    u = GlyphInfo("Unicode")
+	    if (u >= 0u4e00 && u <= 0x9eff)
+		Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
+		SetWidth($em)
+	    endif
+	endloop
+    endif
 endif
 
 Save(_ttfname:r + ".sfd")

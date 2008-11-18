@@ -57,7 +57,7 @@ sub new
     # Check files are not included in codemap
     opendir LS, $dir;
     for my $file (readdir LS) {
-	next if $file =~ m/^(?:\.|\.\.|.*\.ai|codemap|v?bearings|kernings|baseline|charspaces|CVS)$/;
+	next if $file =~ m/^(?:\.|\.\.|vert|.*\.ai|codemap|v?bearings|kernings|baseline|charspaces|CVS)$/;
 	my $path = join('/', $dir, $file);
 	if (not exists $this->{name2codes}->{$path}) {
 	    printf STDERR "$path isn't included in codemap file\n";
@@ -78,7 +78,7 @@ sub _map2ucs
 	    for my $code2 (split m/,/, $code)
 	    {
 		if ($code2 =~ m/^0x([[:xdigit:]]+)(u)?$/ and defined $2) {
-		    push @mapped, sprintf('u%04x', hex($1));
+		    push @mapped, sprintf('u%04X', hex($1));
 		} else {
 		    $this->_maperror($code2);
 		}
@@ -97,11 +97,11 @@ sub _map2ucs
 	    {
 		if ($code2 =~ m/^0x([[:xdigit:]]+)(u)?$/) {
 		    if (defined $2) {
-			push @mapped, sprintf('u%04x', hex($1));
+			push @mapped, sprintf('u%04X', hex($1));
 		    } else {
 			my $ucs = $this->{ucstable}->get($1);
 			if (defined $ucs) {
-			    push @mapped, sprintf('u%04x', $ucs);
+			    push @mapped, sprintf('u%04X', $ucs);
 			} else {
 			    $this->_maperror($code2);
 			}

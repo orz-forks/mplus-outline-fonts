@@ -83,21 +83,11 @@ dirs:
 ifdef MPLUS_FULLSET
 SVGFILES=	svg.d/*/*.svg svg.d/*/*/*.svg
 else
-SVGFILES=	svg.d/*/*.svg
+SVGFILES=	svg.d/*/*.svg svg.d/*/vert/*.svg
 endif
 
 split-svgs: dirs
 	perl -I scripts scripts/split-svg.pl ${SVGFILES}
-	for w in $(NORMAL_WEIGHTS) ; do \
-		for g in $(GROUPS) ; do \
-			expr 0 + `cat svg.d/$$g/baseline` + ${BASELINE_SHIFT} > work.d/splitted/$$w/$$g/baseline ;\
-		done \
-	done
-	for w in $(BLACK_WEIGHTS) ; do \
-		for g in $(UNABRIDGED_GROUPS) ; do \
-			expr 0 + `cat svg.d/$$g/baseline` + ${BASELINE_SHIFT} > work.d/splitted/$$w/$$g/baseline ;\
-		done \
-	done
 
 clean:
 	@rm -rf work.d/ release/mplus-* *~ 

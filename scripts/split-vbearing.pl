@@ -26,14 +26,13 @@ print "AddLookupSubtable(\"gsubvert\", \"j-vert\")\n";
 print "\n";
 
 foreach $arg (@ARGV) {
-    open(BEARINGS, "<$arg") or die "can't open $arg";
-    $cspace = $arg; $cspace =~ s/bearings$/charspaces/;
+    open(H2V_SHIFT, "<$arg") or die "can't open $arg";
 
 #   print "SetFontHasVerticalMetrics(1)\n";
-    while ($_ = <BEARINGS>) {
+    while ($_ = <H2V_SHIFT>) {
 	next if /^###/ || /^\s*$/;
 
-	my ($ch, $method, @bearings) = split();
+	my ($ch, $method, @h2v_shift) = split();
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
 
 	print "SetCharCnt(CharCnt() + 1)\n";
@@ -47,14 +46,20 @@ foreach $arg (@ARGV) {
 	    }
 	}
 
-	if (defined $bearings[$DX]) {
-	    print ("Move($bearings[$DX], $bearings[$DY])\n");
+	if (defined $h2v_shift[$DX]) {
+	    print ("Move($h2v_shift[$DX], $h2v_shift[$DY])\n");
 	    print "SetWidth(\$em)\n";
 	}
+
+	my $module = $arg;
+	$module =~ s/.*\/(.*)\/vbearings$/\1/;
+	$vert = "../../../splitted/$weight/$module/vert/$ch.svg";
+	$vert =~ s/vert\/uni/vert\/u/;
+	print "if (FileAccess(\"$vert\") == 0) Select(\"$ch.vert\"); Import(\"$vert\"); endif\n";
 
 	print "Reencode(\"unicode4\")\n";
 	print "Select(\"$ch\"); AddPosSub(\"j-vert\", \"${ch}.vert\")\n";
 	print "\n";
     }
-    close BEARINGS;
+    close H2V_SHIFT;
 }
