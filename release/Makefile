@@ -2,7 +2,7 @@ TESTFLIGHT_VER= 021
 
 RELEASE=	mplus-TESTFLIGHT-${TESTFLIGHT_VER}
 
-FILES=	LICENSE_E LICENSE_J README_J m++ipa.pe
+FILES=	LICENSE_E LICENSE_J README_E README_J m++ipa.pe
 
 FONTS=	../work.d/targets/mplus-1p/black/mplus-1p-black.ttf \
 	../work.d/targets/mplus-1p/heavy/mplus-1p-heavy.ttf \
