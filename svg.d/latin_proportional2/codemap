@@ -104,8 +104,10 @@
 2080.svg	0x2083u
 
 # Letterlike Symbols
+2100.svg	0x2102u
+2108.svg	0x210du
 2110.svg	0x2117u
-2118.svg	0x2119u 0x211du
+2118.svg	0x2119u 0x211au 0x211du
 2120.svg	0x2120u 0x2122u
 2148.svg	0x214bu
 
@@ -116,6 +118,9 @@
 2218.svg	0x221bu
 
 # Math Alphanumeric Symbols
-1D538.svg       0x1d539u 0x1d53bu
-1D540.svg       0x1d544u
+1D538.svg       0x1d539u 0x1d53bu 0x1d53eu
+1D540.svg       0x1d541u 0x1d542u 0x1d544u 0x1d546u
+1D548.svg       0x1d54au
+1D558.svg       0x1d55cu
+1D7D8.svg       0x1d7d8u
 1D7F0.svg       0x1d7f6u
