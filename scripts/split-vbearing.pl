@@ -8,6 +8,7 @@
     "`" =>  "grave",
     "\\" => "backslash",
 );
+%names_already_used = ();
 
 $weight = shift;
 
@@ -34,6 +35,9 @@ foreach $arg (@ARGV) {
 
 	my ($ch, $method, @h2v_shift) = split();
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
+
+	next if (defined $names_already_used{$ch});
+	$names_already_used{$ch} = 1;
 
 	print "SetCharCnt(CharCnt() + 1)\n";
 	print "Select(\"$ch\"); Copy(); Select(CharCnt() - 1); Paste()\n";

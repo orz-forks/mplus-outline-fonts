@@ -1,7 +1,7 @@
-#Mplus-1P#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-1p/;s/%%FAMILY%%/m+-1p/;s/%%MODULES_LATIN%%/latin_proportional1/;s/%%MODULES_KANA%%/hiragana1 katakana1 miscellaneous1 latin_fullwidth1/
-#Mplus-2P#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-2p/;s/%%FAMILY%%/m+-2p/;s/%%MODULES_LATIN%%/latin_proportional1 latin_proportional2/;s/%%MODULES_KANA%%/hiragana2 katakana2 miscellaneous2 latin_fullwidth1 latin_fullwidth2/
-#Mplus-1C#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-1c/;s/%%FAMILY%%/m+-1c/;s/%%MODULES_LATIN%%/latin_clear1/;s/%%MODULES_KANA%%/hiragana1 katakana1 miscellaneous1 latin_fullwidth1 latin_full_clear1/
-#Mplus-2C#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-2c/;s/%%FAMILY%%/m+-2c/;s/%%MODULES_LATIN%%/latin_clear1 latin_clear2/;s/%%MODULES_KANA%%/hiragana2 katakana2 miscellaneous2 latin_fullwidth1 latin_fullwidth2 latin_full_clear1 latin_full_clear2/
+#Mplus-1P#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-1p/;s/%%FAMILY%%/m+-1p/;s/%%MODULES_LATIN%%/latin_proportional1/;s/%%MODULES_KANA%%/hiragana1 katakana1 miscellaneous1 latin_fullwidth1/;s/%%ALTERNATIVE_BASE%%//;s/%%MODULES_ALT%%//
+#Mplus-2P#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-2p/;s/%%FAMILY%%/m+-2p/;s/%%MODULES_LATIN%%/latin_proportional1 latin_proportional2/;s/%%MODULES_KANA%%/hiragana2 katakana2 miscellaneous1 miscellaneous2 latin_fullwidth1 latin_fullwidth2/;s/%%ALTERNATIVE_BASE%%//;s/%%MODULES_ALT%%//
+#Mplus-1C#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-1c/;s/%%FAMILY%%/m+-1c/;s/%%MODULES_LATIN%%/latin_clear1/;s/%%MODULES_KANA%%/hiragana1 katakana1 miscellaneous1 latin_fullwidth1 latin_full_clear1/;s/%%ALTERNATIVE_BASE%%/mplus-1p/;s/%%MODULES_ALT%%/latin_proportional1/
+#Mplus-2C#COMMON_SUBST=	s/%%FONTNAME_BASE%%/mplus-2c/;s/%%FAMILY%%/m+-2c/;s/%%MODULES_LATIN%%/latin_clear1 latin_clear2/;s/%%MODULES_KANA%%/hiragana2 katakana2 miscellaneous1 miscellaneous2 latin_fullwidth1 latin_fullwidth2 latin_full_clear1 latin_full_clear2/;s/%%ALTERNATIVE_BASE%%/mplus-2p/;s/%%MODULES_ALT%%/latin_proportional1 latin_proportional2/
 
 TEMPLATE=	../../../scripts/target-Makefile.2.tmpl
 SUBDIRS=	black heavy bold medium regular light thin

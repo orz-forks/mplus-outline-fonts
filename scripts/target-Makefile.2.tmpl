@@ -2,15 +2,18 @@ FONTNAME_BASE:=	%%FONTNAME_BASE%%
 FAMILY:=	%%FAMILY%%
 MODULES_KANA:=	%%MODULES_KANA%%
 MODULES_LATIN:=	%%MODULES_LATIN%%
+ALTERNATIVE_BASE:=	%%ALTERNATIVE_BASE%%
+MODULES_ALT:=	%%MODULES_ALT%%
+ifdef MPLUS_FULLSET
+MODULES=	$(MODULES_ALT) $(MODULES_KANA) $(MODULES_LATIN) kanji
+else
+MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
+endif
 
 WEIGHT:=	%%WEIGHT%%
 
 SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_vert_chars set_instructions
 SCRIPTS+=	ligature01.fea
-MODULES=	$(MODULES_KANA) $(MODULES_LATIN)
-ifdef MPLUS_FULLSET
-MODULES+=	kanji
-endif
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
 	/usr/local/bin/fontforge -script build-ttf.pe $@ $(MODULES)
