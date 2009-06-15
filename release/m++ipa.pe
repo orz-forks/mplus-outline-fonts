@@ -8,7 +8,7 @@ Mplus1m = "mplus-1m-regular.ttf"
 Mplus2m = "mplus-2m-regular.ttf"
 Mplus1mn = "mplus-1mn-regular.ttf"
 
-KanjiFont = "ipag.ttf"
+KanjiFont = "ipag.otf"
 
 Mplus1p_kanji = "M+1P+IPAG"
 Mplus2p_kanji = "M+2P+IPAG"
@@ -42,7 +42,7 @@ if (FileAccess(Mplus1p)<0 || FileAccess(Mplus2p)<0 || FileAccess(KanjiFont)<0)
         Print("      mplus-1m-regular.ttf                          ")
         Print("      mplus-2m-regular.ttf                          ")
         Print("      mplus-1mn-regular.ttf                         ")
-        Print("      ipag.ttf                                      ")
+        Print("      ipag.otf                                      ")
 	Print(" 2) run this script by fontforge.                   ")
         Print("      /usr/local/bin/fontforge -script m++ipa.pe    ")
 	Print(" 3) seven new files will be created.                ")
