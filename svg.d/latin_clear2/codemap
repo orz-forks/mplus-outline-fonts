@@ -4,8 +4,8 @@
 0028.svg	0x002au
 # 3
 0030.svg	0x0033u
-# B D
-0040.svg	0x0042u 0x0044u
+# @ B D
+0040.svg	0x0040u 0x0042u 0x0044u
 # M
 0048.svg	0x004du
 # P R
@@ -19,3 +19,4 @@
 00B0.svg	0x00b3u
 00B8.svg	0x00beu
 00D0.svg	0x00d0u
+00F8.svg	0x00fdu 0x00ffu
