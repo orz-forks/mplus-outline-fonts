@@ -72,8 +72,25 @@
 # Spacing Modifier Letters
 02D8.svg	0x02dcu
 
+# Latin Extended Additional
+1E38.svg	0x1e3eu 0x1e3fu
+1E98.svg	0x1e9eu
+
 # General Punctuation
 2018.svg	0x2018u 0x2019u 0x201au 0x201bu 0x201cu 0x201du 0x201eu 0x201fu
 
 # Currency Symbols
-20A8.svg	0x20a9u
+20A8.svg	0x20a9u 0x20acu
+
+# Letterlike Symbols
+2120.svg	0x2122u
+
+# Mathematical Operators
+2200.svg	0x2205u
+2238.svg	0x223cu
+
+# Control Pictures
+2420.svg	0x2422u 0x2426u
+
+# Alphabetic Presentation Forms
+# FB00.svg      0xfb00u 0xfb01u 0xfb02u 0xfb03u 0xfb04u
