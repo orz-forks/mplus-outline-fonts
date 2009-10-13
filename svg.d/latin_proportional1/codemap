@@ -186,10 +186,16 @@
 0E38.svg	0x0e3fu
 
 # Phonetic Extensions
-1D48.svg	0x1d49u 0x1d4au
+1D30.svg	0x1d30u 0x1d35u
+1D38.svg	0x1d38u 0x1d39u 0x1d3au
+1D40.svg	0x1d40u
+1D48.svg	0x1d48u 0x1d49u 0x1d4au
+1D50.svg	0x1d50u 0x1d57u
+1D58.svg	0x1d5bu
 
 # Phonetic Extensions Supplement
 1D90.svg	0x1d91u
+1D98.svg	0x1d9cu
 1DB8.svg	0x1dbfu
 
 # Combining Diacritical Marks Supplement
@@ -368,6 +374,7 @@
 
 # Latin Extended-C
 2C70.svg	0x2c71u
+2C78.svg	0x2c7du
 
 # Supplemental Punctuation
 2E10.svg	0x2e17u
