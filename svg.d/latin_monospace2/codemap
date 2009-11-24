@@ -32,6 +32,17 @@
 0158.svg	0x0158u
 0170.svg	0x0177u
 
+# Latin Extended-B
+0230.svg	0x0233u
+
+# Greek and Coptic
+0390.svg	0x0392u
+0398.svg	0x039cu
+03A0.svg	0x03a1u
+
+# Cyrillic
+0408.svg	0x0409u 0x040au
+
 # Phonetic Extensions
 1D30.svg	0x1d30u
 1D38.svg	0x1d39u
@@ -44,14 +55,6 @@
 1E50.svg	0x1e56u
 1E58.svg	0x1e5au 0x1e5cu 0x1e5eu
 1EF0.svg	0x1ef3u 0x1ef5u
-
-# Latin Extended-B
-0230.svg	0x0233u
-
-# Greek and Coptic
-0390.svg	0x0392u
-0398.svg	0x039cu
-03A0.svg	0x03a1u
 
 # Superscripts and Subscripts
 2070.svg	0x2070u
