@@ -12,11 +12,11 @@ endif
 
 WEIGHT:=	%%WEIGHT%%
 
-SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_vert_chars set_instructions
-SCRIPTS+=	ligature01.fea
+SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_vert_chars set_instructions set_ccmp
+SCRIPTS+=	ligature01.fea ccmp01.fea
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
-	/usr/local/bin/fontforge -script build-ttf.pe $@ $(MODULES)
+	fontforge -script build-ttf.pe $@ $(MODULES)
 
 set_bearings: ../../../../svg.d/latin_proportional1/bearings
 	perl ../../../../scripts/split-bearing.pl ${WEIGHT} $(MODULES) > $@
@@ -42,6 +42,12 @@ set_instructions: ../../../../scripts/set_instructions
 set_fontnames: ../../../../scripts/set_fontnames.tmpl
 	sed 's/%Fnbase%/${FONTNAME_BASE}/;s/%Family%/${FAMILY}/g;s/%Weight%/${WEIGHT}/g' ../../../../scripts/set_fontnames.tmpl > $@
 
+ccmp01.fea: ../../../../scripts/ccmp01.fea
+	ln -s ../../../../scripts/ccmp01.fea $@
+
+set_ccmp: ../../../../scripts/set_ccmp
+	ln -s ../../../../scripts/set_ccmp $@
+
 clean:
 	rm -f *~ *.ttf build-ttf.pe tmp.sfd
-	rm -f set_bearings set_kernings set_fontnames set_ligatures set_instructions *.fea
+	rm -f set_bearings set_kernings set_fontnames set_ligatures set_instructions set_ccmp *.fea

@@ -58,6 +58,7 @@ Save(_ttfname:r + ".sfd")
 SelectAll(); RemoveOverlap(); RoundToInt()
 
 set_ligatures()
+set_ccmp()
 set_instructions()
 
 Generate(_ttfname, "", 0x84)
