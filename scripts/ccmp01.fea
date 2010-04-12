@@ -1,0 +1,35 @@
+lookup ccmplookup01 {
+ lookupflag 0;
+    sub \uni304B \uni309A by \uniE055; # HIRAGANA LETTER BIDAKUON NGA
+    sub \uni304D \uni309A by \uniE056; # HIRAGANA LETTER BIDAKUON NGI
+    sub \uni304F \uni309A by \uniE057; # HIRAGANA LETTER BIDAKUON NGU
+    sub \uni3051 \uni309A by \uniE058; # HIRAGANA LETTER BIDAKUON NGE
+    sub \uni3053 \uni309A by \uniE059; # HIRAGANA LETTER BIDAKUON NGO
+    sub \uni30AB \uni309A by \uniE205; # KATAKANA LETTER BIDAKUON NGA
+    sub \uni30AD \uni309A by \uniE206; # KATAKANA LETTER BIDAKUON NGI
+    sub \uni30AF \uni309A by \uniE207; # KATAKANA LETTER BIDAKUON NGU
+    sub \uni30B1 \uni309A by \uniE208; # KATAKANA LETTER BIDAKUON NGE
+    sub \uni30B3 \uni309A by \uniE209; # KATAKANA LETTER BIDAKUON NGO
+    sub \uni30BB \uni309A by \uniE20D; # KATAKANA LETTER AINU CE
+    sub \uni30C4 \uni309A by \uniE211; # KATAKANA LETTER AINU TU
+    sub \uni30C8 \uni309A by \uniE213; # KATAKANA LETTER AINU TO
+    sub \uni31F7 \uni309A by \uniE29B; # KATAKANA LETTER SMALL PU
+} ccmplookup01;
+
+feature ccmp {
+  script latn;
+    language dflt;
+        lookup ccmplookup01;
+  script grek;
+    language dflt;
+        lookup ccmplookup01;
+  script cyrl;
+    language dflt;
+        lookup ccmplookup01;
+  script kana;
+    language dflt;
+        lookup ccmplookup01;
+  script hani;
+    language dflt;
+        lookup ccmplookup01;
+} ccmp;

@@ -1,0 +1,28 @@
+a = [ \
+	0uE055, \
+	0uE056, \
+	0uE057, \
+	0uE058, \
+	0uE059, \
+	0uE205, \
+	0uE206, \
+	0uE207, \
+	0uE208, \
+	0uE209, \
+	0uE20D, \
+	0uE211, \
+	0uE213, \
+	0uE29B, \
+	0]
+f = 1
+i = 0
+while ( a[i] != 0 )
+	if ( ! WorthOutputting(a[i]) )
+		f = 0
+		break
+	endif
+	i++
+endloop
+if (f)
+	MergeFeature("ccmp01.fea") 
+endif
