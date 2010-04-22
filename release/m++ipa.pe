@@ -8,7 +8,7 @@ Mplus1m = "mplus-1m-regular.ttf"
 Mplus2m = "mplus-2m-regular.ttf"
 Mplus1mn = "mplus-1mn-regular.ttf"
 
-KanjiFont = "ipag.otf"
+KanjiFont = "ipag.ttf"
 
 Mplus1p_kanji = "M+1P+IPAG"
 Mplus2p_kanji = "M+2P+IPAG"
@@ -31,6 +31,8 @@ panose_mono[8] = 0
 panose_mono[9] = 0
 
 if (FileAccess(Mplus1p)<0 || FileAccess(Mplus2p)<0 || FileAccess(KanjiFont)<0)
+	Print("                     ATTENTION:                     ")
+	Print(" this script require IPAFont Ver.003.02 or later.   ")
 	Print("                                                    ")
 	Print("                       USAGE:                       ")
 	Print("                                                    ")
@@ -42,7 +44,7 @@ if (FileAccess(Mplus1p)<0 || FileAccess(Mplus2p)<0 || FileAccess(KanjiFont)<0)
         Print("      mplus-1m-regular.ttf                          ")
         Print("      mplus-2m-regular.ttf                          ")
         Print("      mplus-1mn-regular.ttf                         ")
-        Print("      ipag.otf                                      ")
+        Print("      ipag.ttf                                      ")
 	Print(" 2) run this script by fontforge.                   ")
         Print("      /usr/local/bin/fontforge -script m++ipa.pe    ")
 	Print(" 3) seven new files will be created.                ")
@@ -59,6 +61,7 @@ endif
 
 family = Mplus1p_kanji
 Open(Mplus1p);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 Generate(family + ".ttf", "", 4)
@@ -66,6 +69,7 @@ Close()
 
 family = Mplus2p_kanji
 Open(Mplus2p);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 Generate(family + ".ttf", "", 4)
@@ -73,6 +77,7 @@ Close()
 
 family = Mplus1c_kanji
 Open(Mplus1c);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 Generate(family + ".ttf", "", 4)
@@ -80,6 +85,7 @@ Close()
 
 family = Mplus2c_kanji
 Open(Mplus2c);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 Generate(family + ".ttf", "", 4)
@@ -87,6 +93,7 @@ Close()
 
 family = Mplus1m_kanji
 Open(Mplus1m);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 SetPanose(panose_mono)
@@ -95,6 +102,7 @@ Close()
 
 family = Mplus2m_kanji
 Open(Mplus2m);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetPanose(panose_mono)
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
@@ -103,6 +111,7 @@ Close()
 
 family = Mplus1mn_kanji
 Open(Mplus1mn);
+ScaleToEm(2048);
 MergeFonts(KanjiFont);
 SetFontNames(family + "-Regular", family, family + " Regular", "Regular", "")
 SetPanose(panose_mono)
