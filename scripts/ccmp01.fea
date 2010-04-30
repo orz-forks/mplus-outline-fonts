@@ -17,19 +17,15 @@ lookup ccmplookup01 {
 } ccmplookup01;
 
 feature ccmp {
-  script latn;
-    language dflt;
-        lookup ccmplookup01;
-  script grek;
-    language dflt;
-        lookup ccmplookup01;
-  script cyrl;
-    language dflt;
-        lookup ccmplookup01;
-  script kana;
-    language dflt;
-        lookup ccmplookup01;
   script hani;
-    language dflt;
-        lookup ccmplookup01;
+     language dflt ;
+      lookup ccmplookup01;
+  script kana;
+     language JAN  exclude_dflt;
+      lookup ccmplookup01;
+     language dflt ;
+      lookup ccmplookup01;
+  script latn;
+     language dflt ;
+      lookup ccmplookup01;
 } ccmp;
