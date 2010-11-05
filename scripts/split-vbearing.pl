@@ -22,7 +22,7 @@ $DY = $DX + 1;
 
 print "xcenter = \$em / 2\n";
 print "ycenter = (\$ascent - \$descent) / 2\n";
-print "AddLookup(\"gsubvert\", \"gsub_single\", 0, [[\"vert\", [[\"kana\", [\"dflt\", \"JAN \"]]]]])\n";
+print "AddLookup(\"gsubvert\", \"gsub_single\", 0, [[\"vert\", [[\"latn\", [\"dflt\"]], [\"grek\", [\"dflt\"]], [\"cyrl\", [\"dflt\"]], [\"kana\", [\"dflt\", \"JAN \"]], [\"hani\", [\"dflt\"]]]]])\n";
 print "AddLookupSubtable(\"gsubvert\", \"j-vert\")\n";
 print "\n";
 
