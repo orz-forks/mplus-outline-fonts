@@ -26,40 +26,60 @@ TARGETS:=		mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c \
 
 BASELINE_SHIFT:=	58
 
-all: split-svgs ttf
+SPLIT_CONCURRENCY:=	1
 
-ttf: work.d/targets/mplus-1p/Makefile work.d/targets/mplus-2p/Makefile  work.d/targets/mplus-1m/Makefile work.d/targets/mplus-2m/Makefile work.d/targets/mplus-1c/Makefile work.d/targets/mplus-2c/Makefile work.d/targets/mplus-1mn/Makefile work.d/targets/mplus-2mn/Makefile
-	@(cd work.d/targets/mplus-1p ; $(MAKE))
-	@(cd work.d/targets/mplus-2p ; $(MAKE))
-	@(cd work.d/targets/mplus-1m ; $(MAKE))
-	@(cd work.d/targets/mplus-2m ; $(MAKE))
-	@(cd work.d/targets/mplus-1c ; $(MAKE))
-	@(cd work.d/targets/mplus-2c ; $(MAKE))
-	@(cd work.d/targets/mplus-1mn ; $(MAKE))
-	@(cd work.d/targets/mplus-2mn ; $(MAKE))
+all: ttf
 
-work.d/targets/mplus-1p/Makefile: scripts/target-Makefile.1.tmpl 
+ttf: mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c mplus-1mn mplus-2mn
+
+prepare-build: work.d/targets/mplus-1p/Makefile work.d/targets/mplus-2p/Makefile work.d/targets/mplus-1m/Makefile work.d/targets/mplus-2m/Makefile work.d/targets/mplus-1c/Makefile work.d/targets/mplus-2c/Makefile work.d/targets/mplus-1mn/Makefile work.d/targets/mplus-2mn/Makefile split-svgs
+
+mplus-1p: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-2p: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-1m: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-2m: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-1c: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-2c: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-1mn: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+mplus-2mn: prepare-build
+	@(cd work.d/targets/$@ ; $(MAKE))
+
+work.d/targets/mplus-1p/Makefile: scripts/target-Makefile.1.tmpl dirs
 	sed s/^#Mplus-1P#// scripts/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-2p/Makefile: scripts/target-Makefile.1.tmpl 
+work.d/targets/mplus-2p/Makefile: scripts/target-Makefile.1.tmpl dirs
 	sed s/^#Mplus-2P#// scripts/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-1m/Makefile: scripts/target-Makefile.1s.tmpl 
+work.d/targets/mplus-1m/Makefile: scripts/target-Makefile.1s.tmpl dirs
 	sed s/^#Mplus-1M#// scripts/target-Makefile.1s.tmpl > $@
 
-work.d/targets/mplus-2m/Makefile: scripts/target-Makefile.1s.tmpl 
+work.d/targets/mplus-2m/Makefile: scripts/target-Makefile.1s.tmpl dirs
 	sed s/^#Mplus-2M#// scripts/target-Makefile.1s.tmpl > $@
 
-work.d/targets/mplus-1c/Makefile: scripts/target-Makefile.1.tmpl 
+work.d/targets/mplus-1c/Makefile: scripts/target-Makefile.1.tmpl dirs
 	sed s/^#Mplus-1C#// scripts/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-2c/Makefile: scripts/target-Makefile.1.tmpl 
+work.d/targets/mplus-2c/Makefile: scripts/target-Makefile.1.tmpl dirs
 	sed s/^#Mplus-2C#// scripts/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-1mn/Makefile: scripts/target-Makefile.1s.tmpl 
+work.d/targets/mplus-1mn/Makefile: scripts/target-Makefile.1s.tmpl dirs
 	sed s/^#Mplus-1mN#// scripts/target-Makefile.1s.tmpl > $@
 
-work.d/targets/mplus-2mn/Makefile: scripts/target-Makefile.1s.tmpl 
+work.d/targets/mplus-2mn/Makefile: scripts/target-Makefile.1s.tmpl dirs
 	sed s/^#Mplus-2mN#// scripts/target-Makefile.1s.tmpl > $@
 
 dirs:
@@ -87,7 +107,7 @@ SVGFILES=	svg.d/*/*.svg svg.d/*/vert/*.svg
 endif
 
 split-svgs: dirs
-	perl -I scripts scripts/split-svg.pl ${SVGFILES}
+	perl -I scripts scripts/split-svg.pl $(SPLIT_CONCURRENCY) ${SVGFILES}
 
 clean:
 	@rm -rf work.d/ release/mplus-* *~ 
