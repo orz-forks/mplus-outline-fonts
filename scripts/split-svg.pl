@@ -34,7 +34,12 @@ while (@ARGV) {
     threads->new(\&doSplit, $semaphore, $orig_svg);
 }
 
-$exitflag = 1;
+until ($exitflag) {
+    my $thrnum = threads->list;
+    if ($thrnum < 2) {
+        $exitflag = 1;
+    }
+}
 $jointhrs->join;
 
 exit 0;
@@ -43,8 +48,10 @@ exit 0;
 sub joinThreads {
     until ($exitflag) {
         foreach my $thr (threads->list) {
-            if ($thr->tid and !threads::equal($thr, threads->self)) {
+            my $tid = $thr->tid;
+            if ($tid and !threads::equal($thr, threads->self)) {
                 $thr->join;
+                #print STDERR "  Thread $tid joined.\n" unless defined $silent;
             }
         }
     }
