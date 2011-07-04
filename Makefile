@@ -39,7 +39,7 @@ KANJI1:=
 KANJI2:=
 endif
 
-all: split-svgs rebuild-ttf
+all: clean-targets split-svgs ttf
 
 ttf: mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c mplus-1mn mplus-2mn
 
