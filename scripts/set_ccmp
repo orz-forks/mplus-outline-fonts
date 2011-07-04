@@ -1,28 +1,24 @@
-a = [ \
-	0uE055, \
-	0uE056, \
-	0uE057, \
-	0uE058, \
-	0uE059, \
-	0uE205, \
-	0uE206, \
-	0uE207, \
-	0uE208, \
-	0uE209, \
-	0uE20D, \
-	0uE211, \
-	0uE213, \
-	0uE29B, \
-	0]
-f = 1
-i = 0
-while ( a[i] != 0 )
-	if ( ! WorthOutputting(a[i]) )
-		f = 0
-		break
-	endif
-	i++
+table = [\
+  0uE055, "aj16209",\
+  0uE056, "aj16210",\
+  0uE057, "aj16211",\
+  0uE058, "aj16212",\
+  0uE059, "aj16213",\
+  0uE20D, "aj16219",\
+  0uE29B, "aj16246",\
+  0uE205, "aj16214",\
+  0uE206, "aj16215",\
+  0uE207, "aj16216",\
+  0uE208, "aj16217",\
+  0uE209, "aj16218",\
+  0uE211, "aj16220",\
+  0uE213, "aj16221" ]
+i = 0; while ( i < SizeOf(table)/2 )
+  if ( SelectIf(table[i*2]) == 1 )
+    SetGlyphName(table[i*2+1])
+  endif
+  ++i
 endloop
-if (f)
-	MergeFeature("ccmp01.fea") 
-endif
+
+MergeFeature("ccmp01.fea") 
+MergeFeature("ccmp02.fea") 

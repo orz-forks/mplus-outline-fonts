@@ -12,7 +12,7 @@
 $weight = shift;
 
 @ARGV = grep { -e $_ } map { $_ = "../../../../svg.d/$_/bearings" } @ARGV;
-die "No module specified:" if (scalar @ARGV == 0);
+exit 0 if (scalar @ARGV == 0);
 
 %weight_columns = ( 'black' => 0, 'heavy' => 2, 'bold' => 4, 'medium' => 6, 
 		    'regular' => 8, 'light' => 10, 'thin' => 12);

@@ -69,7 +69,7 @@ else
 	SetTTFName(0x409, 2, "Regular");
 endif
 
-c = Strsub(family, Strlen(family)-1); if (c == "M" || c == 'm')
+if ( (Strstr(fontname,"m-") != -1) || (Strstr(fontname,"mn-") != -1) )
 	panose[3] = 9
 	SetOS2Value("IBMFamily", 8 * 256 + 9)
 endif

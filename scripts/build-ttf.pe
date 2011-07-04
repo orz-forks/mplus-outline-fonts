@@ -23,6 +23,7 @@ endloop
 mod = 0; while (mod < SizeOf(modules))
     moddir = "../../../splitted/" + _weight + "/" + modules[mod]
     if (modules[mod] == "kanji")
+if (mod == 0) # mplus-?k
 	x = 0; while (x < SizeOf(kanjiclass))
 	    y = 0; while (y < 10)
 	        subdir = moddir + "/" + kanjiclass[x] + digit[y]
@@ -31,6 +32,22 @@ mod = 0; while (mod < SizeOf(modules))
 		endif
 	    y++; endloop
 	x++; endloop
+
+    if (Strstr(_ttfname, "mplus-2") == 0)
+	SelectWorthOutputting()
+	foreach
+		Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
+		SetWidth($em)
+        SetVWidth($em)
+	endloop
+    endif
+    SelectAll(); RemoveOverlap(); RoundToInt()
+else # load kanji glyphs from mplus-?k
+    SelectAll(); RemoveOverlap(); RoundToInt()
+    # merge
+    MergeFonts("../../" + Strsub(_ttfname, 0, 7) + "k/" \
+        + _weight + "/" + Strsub(_ttfname, 0, 7) + "k-" + _weight + ".ttf")
+endif
     else
 	$trace=0; Import(moddir + "/u*.svg"); $trace=0
     endif
@@ -41,26 +58,12 @@ set_bearings()
 set_kernings()
 set_vert_chars()
 
-if (_kanji_scale_percentage != 100)
-    if (Strstr(_ttfname, "mplus-2") == 0)
-	SelectWorthOutputting()
-	foreach
-	    u = GlyphInfo("Unicode")
-	    if (u >= 0u4e00 && u <= 0x9eff)
-		Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
-		SetWidth($em)
-	    endif
-	endloop
-    endif
-endif
-
-Save(_ttfname:r + ".sfd")
-SelectAll(); RemoveOverlap(); RoundToInt()
+# Save(_ttfname:r + ".sfd")
 
 set_ligatures()
 set_ccmp()
 set_instructions()
 
-Generate(_ttfname, "", 0x84)
+Generate(_ttfname, "", 0x80)
 
 Quit()

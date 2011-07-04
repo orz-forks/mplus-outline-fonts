@@ -12,6 +12,7 @@
 $weight = shift;
 
 @ARGV = grep { -e $_ } map { $_ = "../../../../svg.d/$_/kernings" } @ARGV;
+exit 0 if (scalar @ARGV == 0);
 
 %weight_columns = ( 'black' => 0, 'heavy' => 1, 'bold' => 2, 'medium' => 3,
 		    'regular' => 4, 'light' => 5, 'thin' => 6);

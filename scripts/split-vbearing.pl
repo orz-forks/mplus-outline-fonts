@@ -13,7 +13,7 @@
 $weight = shift;
 
 @ARGV = grep { -e $_ } map { $_ = "../../../../svg.d/$_/vbearings" } @ARGV;
-die "No module specified:" if (scalar @ARGV == 0);
+exit 0 if (scalar @ARGV == 0);
 
 %weight_columns = ( 'black' => 0, 'heavy' => 2, 'bold' => 4, 'medium' => 6, 
 		    'regular' => 8, 'light' => 10, 'thin' => 12);
@@ -24,12 +24,12 @@ print "xcenter = \$em / 2\n";
 print "ycenter = (\$ascent - \$descent) / 2\n";
 print "AddLookup(\"gsubvert\", \"gsub_single\", 0, [[\"vert\", [[\"latn\", [\"dflt\"]], [\"grek\", [\"dflt\"]], [\"cyrl\", [\"dflt\"]], [\"kana\", [\"dflt\", \"JAN \"]], [\"hani\", [\"dflt\"]]]]])\n";
 print "AddLookupSubtable(\"gsubvert\", \"j-vert\")\n";
+print "SetFontHasVerticalMetrics(1)\n";
 print "\n";
 
 foreach $arg (@ARGV) {
     open(H2V_SHIFT, "<$arg") or die "can't open $arg";
 
-#   print "SetFontHasVerticalMetrics(1)\n";
     while ($_ = <H2V_SHIFT>) {
 	next if /^###/ || /^\s*$/;
 
