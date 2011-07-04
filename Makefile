@@ -23,64 +23,85 @@ NORMAL_WEIGHTS:=	bold medium regular light thin
 WEIGHTS:=		${BLACK_WEIGHTS} ${NORMAL_WEIGHTS}
 TARGETS:=		mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c \
 			mplus-1mn mplus-2mn
-
+ifdef MPLUS_FULLSET
+TARGETS+=		mplus-1k mplus-2k
+endif
 BASELINE_SHIFT:=	58
 
 SPLIT_CONCURRENCY:=	1
+SCRIPTS:=scripts
 
-all: ttf
+ifdef MPLUS_FULLSET
+KANJI1:=mplus-1k
+KANJI2:=mplus-2k
+else
+KANJI1:=
+KANJI2:=
+endif
+
+all: split-svgs rebuild-ttf
 
 ttf: mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c mplus-1mn mplus-2mn
 
-prepare-build: work.d/targets/mplus-1p/Makefile work.d/targets/mplus-2p/Makefile work.d/targets/mplus-1m/Makefile work.d/targets/mplus-2m/Makefile work.d/targets/mplus-1c/Makefile work.d/targets/mplus-2c/Makefile work.d/targets/mplus-1mn/Makefile work.d/targets/mplus-2mn/Makefile split-svgs
-
-mplus-1p: prepare-build
+mplus-1p: work.d/targets/mplus-1p/Makefile $(KANJI1)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-2p: prepare-build
+mplus-2p: work.d/targets/mplus-2p/Makefile $(KANJI2)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-1m: prepare-build
+mplus-1m: work.d/targets/mplus-1m/Makefile $(KANJI1)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-2m: prepare-build
+mplus-2m: work.d/targets/mplus-2m/Makefile $(KANJI2)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-1c: prepare-build
+mplus-1c: work.d/targets/mplus-1c/Makefile $(KANJI1)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-2c: prepare-build
+mplus-2c: work.d/targets/mplus-2c/Makefile $(KANJI2)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-1mn: prepare-build
+mplus-1mn: work.d/targets/mplus-1mn/Makefile $(KANJI1)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-mplus-2mn: prepare-build
+mplus-2mn: work.d/targets/mplus-2mn/Makefile $(KANJI2)
 	@(cd work.d/targets/$@ ; $(MAKE))
 
-work.d/targets/mplus-1p/Makefile: scripts/target-Makefile.1.tmpl dirs
-	sed s/^#Mplus-1P#// scripts/target-Makefile.1.tmpl > $@
+mplus-1k: work.d/targets/mplus-1k/Makefile
+	@(cd work.d/targets/$@ ; $(MAKE))
 
-work.d/targets/mplus-2p/Makefile: scripts/target-Makefile.1.tmpl dirs
-	sed s/^#Mplus-2P#// scripts/target-Makefile.1.tmpl > $@
+mplus-2k: work.d/targets/mplus-2k/Makefile
+	@(cd work.d/targets/$@ ; $(MAKE))
 
-work.d/targets/mplus-1m/Makefile: scripts/target-Makefile.1s.tmpl dirs
-	sed s/^#Mplus-1M#// scripts/target-Makefile.1s.tmpl > $@
+work.d/targets/mplus-1p/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-1P#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-2m/Makefile: scripts/target-Makefile.1s.tmpl dirs
-	sed s/^#Mplus-2M#// scripts/target-Makefile.1s.tmpl > $@
+work.d/targets/mplus-2p/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-2P#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-1c/Makefile: scripts/target-Makefile.1.tmpl dirs
-	sed s/^#Mplus-1C#// scripts/target-Makefile.1.tmpl > $@
+work.d/targets/mplus-1m/Makefile: $(SCRIPTS)/target-Makefile.1s.tmpl dirs
+	sed s/^#Mplus-1M#// $(SCRIPTS)/target-Makefile.1s.tmpl > $@
 
-work.d/targets/mplus-2c/Makefile: scripts/target-Makefile.1.tmpl dirs
-	sed s/^#Mplus-2C#// scripts/target-Makefile.1.tmpl > $@
+work.d/targets/mplus-2m/Makefile: $(SCRIPTS)/target-Makefile.1s.tmpl dirs
+	sed s/^#Mplus-2M#// $(SCRIPTS)/target-Makefile.1s.tmpl > $@
 
-work.d/targets/mplus-1mn/Makefile: scripts/target-Makefile.1s.tmpl dirs
-	sed s/^#Mplus-1mN#// scripts/target-Makefile.1s.tmpl > $@
+work.d/targets/mplus-1c/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-1C#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
 
-work.d/targets/mplus-2mn/Makefile: scripts/target-Makefile.1s.tmpl dirs
-	sed s/^#Mplus-2mN#// scripts/target-Makefile.1s.tmpl > $@
+work.d/targets/mplus-2c/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-2C#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
+
+work.d/targets/mplus-1mn/Makefile: $(SCRIPTS)/target-Makefile.1s.tmpl dirs
+	sed s/^#Mplus-1mN#// $(SCRIPTS)/target-Makefile.1s.tmpl > $@
+
+work.d/targets/mplus-2mn/Makefile: $(SCRIPTS)/target-Makefile.1s.tmpl dirs
+	sed s/^#Mplus-2mN#// $(SCRIPTS)/target-Makefile.1s.tmpl > $@
+
+work.d/targets/mplus-1k/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-1k#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
+
+work.d/targets/mplus-2k/Makefile: $(SCRIPTS)/target-Makefile.1.tmpl dirs
+	sed s/^#Mplus-2k#// $(SCRIPTS)/target-Makefile.1.tmpl > $@
 
 dirs:
 	for w in $(NORMAL_WEIGHTS) ; do \
@@ -107,7 +128,7 @@ SVGFILES=	svg.d/*/*.svg svg.d/*/vert/*.svg
 endif
 
 split-svgs: dirs
-	perl -I scripts scripts/split-svg.pl $(SPLIT_CONCURRENCY) ${SVGFILES}
+	perl -I $(SCRIPTS) $(SCRIPTS)/split-svg.pl $(SPLIT_CONCURRENCY) ${SVGFILES}
 
 clean:
 	@rm -rf work.d/ release/mplus-* *~ 
