@@ -244,7 +244,9 @@ sub _select_path {
 				       $region->[0] + $region->[2],
 				       $region->[1] + $region->[3]);
     my ($x, $y);
-    if ($path =~ m/\sd\s*=\s*\"[Mm]\s*([-+\d.]*)[,\s]+([-+\d.]*)/) {
+    my $data = _get_property($path, "d");
+    $data =~ s/-/ -/g;
+    if ($data =~ m/^\s*[Mm]\s*([-+]?[\d.]*)[,\s]([-+]?[\d.]*)/) {
 	($x, $y) = ($1, $2);
         if ($minx <= $x && $x <= $maxx &&
 	    $miny <= $y && $y <= $maxy) {
@@ -263,7 +265,9 @@ sub _select_poly {
 				       $region->[0] + $region->[2],
 				       $region->[1] + $region->[3]);
     if ($poly =~ m/\spoints\s*=\s*\"\s*(.*?)\s*\"/s) {
-	my @points = split /\s*,\s*|\s+/, $1;
+    	my $tmp = $1;
+    	$tmp =~ s/-/ -/g;
+	my @points = split /\s*,\s*|\s+/, $tmp;
 	if ($minx <= $points[0] && $points[0] <= $maxx &&
 	    $miny <= $points[1] && $points[1] <= $maxy) {
 	    my $i;
