@@ -137,7 +137,8 @@ clean:
 clean-targets:
 	@rm -rf work.d/targets/
 
-rebuild-ttf: clean-targets dirs ttf
+rebuild-ttf:
+	@($(MAKE) clean-targets ; $(MAKE) dirs ; $(MAKE) ttf)
 
 release: ttf
 	@(cd release ; $(MAKE) )
