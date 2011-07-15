@@ -49,7 +49,8 @@ foreach $arg (@ARGV) {
 	    
 	$ch = $names_subst{$ch} if defined $names_subst{$ch};
 	print "Select(\"$ch\")\n";
-	$bearings[$L] += $dLSB;  $bearings[$R] += $dRSB;
+	$bearings[$L] += $dLSB if not $l_is_relative;
+	$bearings[$R] += $dRSB if not ($r_is_relative or $r_is_width);
 	print "SetLBearing($bearings[$L], $l_is_relative)\n";
 	if ($r_is_width) {
 	    print "SetWidth($bearings[$R], $r_is_relative)\n";
