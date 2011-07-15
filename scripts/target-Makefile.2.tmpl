@@ -13,7 +13,7 @@ endif
 WEIGHT:=	%%WEIGHT%%
 
 SCRIPTS=	set_bearings set_kernings set_fontnames set_ligatures set_vert_chars set_instructions set_ccmp
-SCRIPTS+=	ligature01.fea ccmp01.fea ccmp02.fea
+SCRIPTS+=	ligature01.fea ccmp01.fea ccmp02.fea mark01.fea
 
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
 	fontforge build-ttf.pe $@ $(MODULES)
@@ -47,6 +47,9 @@ ccmp01.fea: ../../../../scripts/ccmp01.fea
 
 ccmp02.fea: ../../../../scripts/ccmp02.fea
 	ln -s ../../../../scripts/$@ $@
+
+mark01.fea: $(wildcard ../../../../svg.d/*/anchors)
+	perl ../../../../scripts/split-anchors.pl ${WEIGHT} $(MODULES) > $@
 
 set_ccmp: ../../../../scripts/set_ccmp
 	ln -s ../../../../scripts/set_ccmp $@

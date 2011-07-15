@@ -41,10 +41,7 @@ if (mod == 0) # mplus-?k
         SetVWidth($em)
 	endloop
     endif
-    SelectAll(); RemoveOverlap(); RoundToInt()
 else # load kanji glyphs from mplus-?k
-    SelectAll(); RemoveOverlap(); RoundToInt()
-    # merge
     MergeFonts("../../" + Strsub(_ttfname, 0, 7) + "k/" \
         + _weight + "/" + Strsub(_ttfname, 0, 7) + "k-" + _weight + ".ttf")
 endif
@@ -54,15 +51,16 @@ endif
 mod++; endloop
 
 set_fontnames()
+
+if ( modules[0] != "kanji" )
 set_bearings()
 set_kernings()
 set_vert_chars()
-
-# Save(_ttfname:r + ".sfd")
-
 set_ligatures()
 set_ccmp()
 set_instructions()
+SelectAll(); RemoveOverlap(); RoundToInt()
+endif
 
 Generate(_ttfname, "", 0x80)
 
