@@ -18,10 +18,10 @@ SCRIPTS+=	ligature01.fea ccmp01.fea ccmp02.fea mark01.fea
 ${FONTNAME_BASE}-${WEIGHT}.ttf: build-ttf.pe $(SCRIPTS)
 	fontforge build-ttf.pe $@ $(MODULES)
 
-set_bearings: ../../../../svg.d/latin_proportional1/bearings
+set_bearings: $(wildcard ../../../../svg.d/*/bearings)
 	perl ../../../../scripts/split-bearing.pl ${WEIGHT} $(MODULES) > $@
 
-set_kernings: ../../../../svg.d/latin_proportional1/kernings
+set_kernings: $(wildcard ../../../../svg.d/*/kernings)
 	perl ../../../../scripts/split-kerning.pl ${WEIGHT} $(MODULES) > $@
 
 build-ttf.pe: ../../../../scripts/build-ttf.pe
@@ -30,7 +30,7 @@ build-ttf.pe: ../../../../scripts/build-ttf.pe
 set_ligatures: ../../../../scripts/set_ligatures
 	ln -s ../../../../scripts/set_ligatures $@
 
-set_vert_chars: ../../../../svg.d/miscellaneous1/vbearings
+set_vert_chars: $(wildcard ../../../../svg.d/*/vbearings)
 	perl ../../../../scripts/split-vbearing.pl ${WEIGHT} $(MODULES) > $@
 
 ligature01.fea: ../../../../scripts/ligature01.fea
