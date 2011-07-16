@@ -1,3 +1,5 @@
+if ( (Strstr(_ttfname,"m-") != -1) || (Strstr(_ttfname,"mn-") != -1) )
+# monospace kana
 table = [\
   0uE055, "aj16209",\
   0uE056, "aj16210",\
@@ -13,6 +15,24 @@ table = [\
   0uE209, "aj16218",\
   0uE211, "aj16220",\
   0uE213, "aj16221" ]
+else
+# proportional kana
+table = [\
+  0uE055, "aj15603",\
+  0uE056, "aj15604",\
+  0uE057, "aj15605",\
+  0uE058, "aj15606",\
+  0uE059, "aj15607",\
+  0uE20D, "aj15694",\
+  0uE29B, "aj15695",\
+  0uE205, "aj15696",\
+  0uE206, "aj15697",\
+  0uE207, "aj15698",\
+  0uE208, "aj15699",\
+  0uE209, "aj15700",\
+  0uE211, "aj15701",\
+  0uE213, "aj15702" ]
+endif
 i = 0; while ( i < SizeOf(table)/2 )
   if ( SelectIf(table[i*2]) == 1 )
     SetGlyphName(table[i*2+1])
