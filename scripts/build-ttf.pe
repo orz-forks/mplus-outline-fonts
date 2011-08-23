@@ -1,12 +1,14 @@
 #!/usr/local/bin/fontforge -script
 
+$trace = 0
+
 _kanji_scale_percentage = 98
 kanjiclass = ["k","j","m","h","x","y","g","s","l10","l20","l21"]
 
 digit = ["0","1","2","3","4","5","6","7","8","9"]
 
 # create font
-New()
+Open("mplus.sfd")
 Reencode("unicode4")
 ScaleToEm(860, 140)
 
@@ -28,7 +30,7 @@ if (mod == 0) # mplus-?k
 	    y = 0; while (y < 10)
 	        subdir = moddir + "/" + kanjiclass[x] + digit[y]
 	        if (FileAccess(subdir) == 0)
-		    $trace=0; Import(subdir + "/u*.svg"); $trace=0
+		    Import(subdir + "/u*.svg");
 		endif
 	    y++; endloop
 	x++; endloop
@@ -46,22 +48,24 @@ else # load kanji glyphs from mplus-?k
         + _weight + "/" + Strsub(_ttfname, 0, 7) + "k-" + _weight + ".ttf")
 endif
     else
-	$trace=0; Import(moddir + "/u*.svg"); $trace=0
+	Import(moddir + "/u*.svg");
     endif
 mod++; endloop
 
 set_fontnames()
-
 if ( modules[0] != "kanji" )
-set_bearings()
-set_kernings()
-set_vert_chars()
-set_ligatures()
-set_ccmp()
-set_instructions()
-SelectAll(); RemoveOverlap(); RoundToInt()
+	set_bearings()
+	set_kernings()
+	set_vert_chars()
+	set_ligatures()
+	set_ccmp()
+	set_instructions()
+	SelectWorthOutputting()
+	RemoveOverlap()
+	RoundToInt()
 endif
 
-Generate(_ttfname, "", 0x80)
+Generate(_ttfname, "", 0x84)
 
 Quit()
+
