@@ -1,9 +1,12 @@
 # Enclosed Alphanumerics
-#u2460.svg	0x2462u
 u2460.svg	0x2462u,0x2782u
+u2468.svg	0x246cu
 
 # CJK Symbols and Punctuation
 u3018.svg	0x301cu
+
+# Enclosed CJK Letters and Months
+u3250.svg	0x3253u
 
 # Katakana
 u30F8.svg	0x30fcu
