@@ -1,4 +1,4 @@
-TESTFLIGHT_VER= 042
+TESTFLIGHT_VER= 043
 
 RELEASE=	mplus-TESTFLIGHT-${TESTFLIGHT_VER}
 
@@ -58,6 +58,7 @@ release:
 	cp -p $(FILES) ${RELEASE}
 	cp -p $(FONTS) ${RELEASE}
 	tar cvfz ${RELEASE}.tar.gz ${RELEASE}/
+	tar cf - ${RELEASE}/ | xz -9 -c > ${RELEASE}.tar.xz
 	rm -rf ${RELEASE}
 
 clean:
