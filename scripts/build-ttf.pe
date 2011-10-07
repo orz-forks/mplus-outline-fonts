@@ -40,7 +40,7 @@ if (mod == 0) # mplus-?k
 	foreach
 		Scale(_kanji_scale_percentage, $em/2,($ascent+$descent)/2)
 		SetWidth($em)
-        SetVWidth($em)
+		SetVWidth($em)
 	endloop
     endif
 else # load kanji glyphs from mplus-?k
@@ -65,7 +65,7 @@ if ( modules[0] != "kanji" )
 	RoundToInt()
 endif
 
-Generate(_ttfname, "", 0x84)
+Generate(_ttfname, "", 0x800084)
 
 Quit()
 

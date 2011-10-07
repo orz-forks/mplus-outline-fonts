@@ -1,21 +1,21 @@
 table = [\
-  0uE055, "aj16209",\
-  0uE056, "aj16210",\
-  0uE057, "aj16211",\
-  0uE058, "aj16212",\
-  0uE059, "aj16213",\
-  0uE205, "aj16214",\
-  0uE206, "aj16215",\
-  0uE207, "aj16216",\
-  0uE208, "aj16217",\
-  0uE209, "aj16218",\
-  0uE20D, "aj16219",\
-  0uE211, "aj16220",\
-  0uE213, "aj16221",\
-  0uE29B, "aj16246" ]
+  0uE055, "uni304B_uni309A",\
+  0uE056, "uni304D_uni309A",\
+  0uE057, "uni304F_uni309A",\
+  0uE058, "uni3051_uni309A",\
+  0uE059, "uni3053_uni309A",\
+  0uE205, "uni30AB_uni309A",\
+  0uE206, "uni30AD_uni309A",\
+  0uE207, "uni30AF_uni309A",\
+  0uE208, "uni30B1_uni309A",\
+  0uE209, "uni30B3_uni309A",\
+  0uE20D, "uni30BB_uni309A",\
+  0uE211, "uni30C4_uni309A",\
+  0uE213, "uni30C8_uni309A",\
+  0uE29B, "uni31F7_uni309A" ]
 
 i = 0; while ( i < SizeOf(table)/2 )
-  if ( SelectIf(table[i*2]) == 1 )
+  if ( SelectIf(table[i*2]) > 0 )
     SetGlyphName(table[i*2+1])
   endif
   ++i
@@ -24,3 +24,65 @@ endloop
 MergeFeature("ccmp01.fea") 
 MergeFeature("ccmp02.fea") 
 MergeFeature("mark01.fea")
+
+AddLookup("kana semi-voiced lookup", "gsub_ligature", 0, \
+	[["ccmp",[["kana", ["dflt"]]]], ["liga",[["kana", ["dflt"]]]]]);
+AddLookupSubtable("kana semi-voiced lookup", "kana semi-voiced table");
+
+
+if (SelectIf("uni304B_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni304B uni309A");
+endif
+
+if (SelectIf("uni304D_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni304D uni309A");
+endif
+
+if (SelectIf("uni304F_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni304F uni309A");
+endif
+
+if (SelectIf("uni3051_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni3051 uni309A");
+endif
+
+if (SelectIf("uni3053_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni3053 uni309A");
+endif
+
+if (SelectIf("uni30AB_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30AB uni309A");
+endif
+
+if (SelectIf("uni30AD_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30AD uni309A");
+endif
+
+if (SelectIf("uni30AF_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30AF uni309A");
+endif
+
+if (SelectIf("uni30B1_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30B1 uni309A");
+endif
+
+if (SelectIf("uni30B3_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30B3 uni309A");
+endif
+
+if (SelectIf("uni30BB_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30BB uni309A");
+endif
+
+if (SelectIf("uni30C4_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30C4 uni309A");
+endif
+
+if (SelectIf("uni30C8_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni30C8 uni309A");
+endif
+
+if (SelectIf("uni31F7_uni309A") > 0)
+	AddPosSub("kana semi-voiced table", "uni31F7 uni309A");
+endif
+
