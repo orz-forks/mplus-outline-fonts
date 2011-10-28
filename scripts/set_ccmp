@@ -26,7 +26,7 @@ MergeFeature("ccmp02.fea")
 MergeFeature("mark01.fea")
 
 AddLookup("kana semi-voiced lookup", "gsub_ligature", 0, \
-	[["ccmp",[["kana", ["dflt"]]]], ["liga",[["kana", ["dflt"]]]]]);
+	[["ccmp",[["kana", ["JAN ", "dflt"]]]], ["liga",[["kana", ["JAN ", "dflt"]]]]]);
 AddLookupSubtable("kana semi-voiced lookup", "kana semi-voiced table");
 
 
