@@ -1,6 +1,7 @@
 # black, heavy is not designed in monospace fonts, so it's in `ABRIDGED_GROUPS'
 UNABRIDGED_GROUPS:=	hiragana1 katakana1 miscellaneous1 \
 			hiragana2 katakana2 miscellaneous2 \
+			katakana_half1 \
 			latin_proportional1 latin_proportional2 \
 			latin_clear1 latin_clear2 \
 			latin_fullwidth1 latin_fullwidth2 \
