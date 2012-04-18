@@ -23,7 +23,7 @@ BLACK_WEIGHTS:=		black heavy
 NORMAL_WEIGHTS:=	bold medium regular light thin
 WEIGHTS:=		${BLACK_WEIGHTS} ${NORMAL_WEIGHTS}
 TARGETS:=		mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c \
-			mplus-1mn mplus-2mn
+			mplus-1mn # mplus-2mn
 ifdef MPLUS_FULLSET
 TARGETS+=		mplus-1k mplus-2k
 endif
@@ -43,7 +43,7 @@ endif
 all:
 	@($(MAKE) split-svgs ; $(MAKE) rebuild-ttf)
 
-ttf: mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c mplus-1mn mplus-2mn
+ttf: mplus-1p mplus-2p mplus-1m mplus-2m mplus-1c mplus-2c mplus-1mn # mplus-2mn
 
 mplus-1p: work.d/targets/mplus-1p/Makefile $(KANJI1)
 	@(cd work.d/targets/$@ ; $(MAKE))
