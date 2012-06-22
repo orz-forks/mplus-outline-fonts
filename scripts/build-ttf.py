@@ -533,7 +533,7 @@ else:
         set_vert_chars(mod)
     merge_features()
     set_ccmp()
-    # set_instructions()
+    f.autoInstr()
 
 set_alt_tables()
 set_fontnames()
