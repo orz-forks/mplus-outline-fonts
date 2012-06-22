@@ -4,11 +4,10 @@ import os
 import re
 import psMat
 import fontforge
+import config
 
 ttfname = sys.argv[1]
 fontname, weight = os.path.splitext(ttfname)[0].rsplit('-', 1)
-year = "2012"
-version = "1.048"
 modules = sys.argv[2:]
 
 ascent = 860
@@ -254,19 +253,19 @@ def set_fontnames():
     else:
         subfamily = 'Regular'
     fullname = ("%s %s" % (family, weight))
-    copyright = "Copyright(c) %s M+ FONTS PROJECT" % year
+    copyright = "Copyright(c) %s M+ FONTS PROJECT" % config.year
     f.fontname = '%s-%s' % (fontname, weight)
     f.familyname = family
     f.fullname = fullname
     f.weight = weight
     f.copyright = copyright
-    f.version = version
+    f.version = config.version
     f.sfnt_names = (
         ('English (US)', 'Copyright', copyright),
         ('English (US)', 'Family', fullname),
         ('English (US)', 'SubFamily', subfamily),
         ('English (US)', 'Fullname', fullname),
-        ('English (US)', 'Version', 'Version %s' % version),
+        ('English (US)', 'Version', 'Version %s' % config.version),
         ('English (US)', 'PostScriptName', '%s-%s' % (fontname, weight)),
         ('English (US)', 'Vendor URL', 'http://mplus-fonts.sourceforge.jp'),
         ('English (US)', 'Preferred Family', family),
