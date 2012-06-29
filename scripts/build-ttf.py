@@ -472,7 +472,7 @@ def set_kanji_altuni():
 f = fontforge.open('mplus.sfd')
 f.encoding = 'unicode4'
 f.hasvmetrics = True
-ascent = ascent
+f.ascent = ascent
 f.descent = descent
 
 kanji_flag = False
