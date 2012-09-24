@@ -373,9 +373,6 @@ def set_kanji_aliases():
     for i in range(0, len(kangxi_ucs)):
         kangxi_code = i + 0x2F00
         if kangxi_code in f:
-            if kangxi_code == 0x2F5B:
-                # KANGXI RADICAL FANG
-                alt_glyphs['jp04'].append(('uni7259', 'uni2F5B'))
             continue
         if kangxi_ucs[i] in f:
             f.selection.select(kangxi_ucs[i])
