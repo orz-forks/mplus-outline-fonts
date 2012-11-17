@@ -334,7 +334,9 @@ def set_alt_tables():
         'jp04': 'jp04table',
         'vert': 'j-vert'
     }
-    for tag in alt_glyphs:
+    for tag in tag_table:
+        if not tag in alt_glyphs:
+            continue
         for names in alt_glyphs[tag]:
             name, tagged_name = names
             c = get_glyph_by_name(name)
