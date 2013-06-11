@@ -20,8 +20,8 @@ kanji_matrix = psMat.compose(
     psMat.scale(kanji_scale),
     psMat.translate(em / 2, ascent - em / 2)))
 
-svg_uni_name = re.compile('u[0-9A-F]{4,5}', re.IGNORECASE)
-feature_name = re.compile('([- 0-9a-zA-Z]{4})_(uni[0-9A-F]{4,5})')
+svg_uni_name = re.compile('^u[0-9A-F]{4,5}$', re.IGNORECASE)
+feature_name = re.compile('^([- 0-9a-zA-Z]{4})_(uni[0-9A-F]{4,5})$')
 
 alt_glyphs = {}
 def svgname_to_glyphname(name):
