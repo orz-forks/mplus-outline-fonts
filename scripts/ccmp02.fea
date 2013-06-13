@@ -816,6 +816,10 @@ lookup ccmplookup03 {
 } ccmplookup03;
 
 feature ccmp {
+  script DFLT;
+     language dflt ;
+      lookup ccmplookup02;
+      lookup ccmplookup03;
   script cyrl;
      language dflt ;
       lookup ccmplookup02;
