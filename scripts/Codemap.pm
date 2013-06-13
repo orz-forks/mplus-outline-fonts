@@ -79,9 +79,9 @@ sub _map2ucs
 	    {
 		if ($code2 =~ m/^0x([[:xdigit:]]+)u$/) {
 		    push @mapped, sprintf('u%04X', hex($1));
-		} elsif ($code2 =~ m/^aj([[:digit:]]+)$/) {
+		} elsif ($code2 =~ m/^aj([0-9]+)$/) {
 		    push @mapped, sprintf('aj%d', $1 + 0);
-		} elsif ($code2 =~ m/^uni([[:digit:]]+)_uni([[:digit:]]+)$/) {
+		} elsif ($code2 =~ m/^uni([[:xdigit:]]+)_uni([[:xdigit:]]+)$/) {
 		    push @mapped, sprintf('uni%04X_uni%04X', hex($1), hex($2));
 		} elsif ($code2 =~ m/^0x([[:xdigit:]]+)un$/) {
 		    push @mapped, sprintf('jp04_uni%04X', hex($1));
