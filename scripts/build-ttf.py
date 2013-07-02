@@ -540,6 +540,7 @@ else:
     merge_features()
     set_ccmp()
     f.autoInstr()
+    f.hasvmetrics = True
 
 set_alt_tables()
 set_fontnames()
