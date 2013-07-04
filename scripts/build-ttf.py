@@ -522,16 +522,16 @@ if kanji_flag:
     set_kanji_altuni()
 else:
     f.addLookup('gsubvert', 'gsub_single', (), (
-        ("vert", (("latn", ("dflt",)), ("grek", ("dflt",)),
+        ("vert", (("DFLT", ("dflt",)), ("latn", ("dflt",)), ("grek", ("dflt",)),
                   ("cyrl", ("dflt",)), ("kana", ("dflt", "JAN ")),
                   ("hani", ("dflt",))),),))
     f.addLookupSubtable('gsubvert', 'j-vert')
     f.addLookup('kerning pairs', 'gpos_pair', (), (
-        ("kern", (("latn", ("dflt",)),)),))
+        ("kern", (("DFLT", ("dflt",)), ("latn", ("dflt",)),)),))
     f.addLookupSubtable('kerning pairs', 'kp')
     f.addLookup('kana semi-voiced lookup', 'gsub_ligature', (), (
-        ("ccmp", (("kana", ("JAN ", "dflt")),)),
-        ("liga", (("kana", ("JAN ", "dflt")),))))
+        ("ccmp", (("DFLT", ("dflt",)), ("kana", ("JAN ", "dflt")),)),
+        ("liga", (("DFLT", ("dflt",)), ("kana", ("JAN ", "dflt")),))))
     f.addLookupSubtable('kana semi-voiced lookup', 'kana semi-voiced table')
     for mod in modules:
         set_bearings(mod)
