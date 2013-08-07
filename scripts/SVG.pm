@@ -83,13 +83,16 @@ sub clip {
     my ($weight, $unicode);
     my $region = undef;
     for (my $i = 0; $i <= $#{$this->{frames}}; $i++) {
-	my $reg = $this->{frames}->[$i];
-	if ($reg->[0] == $this->{cols}->[$col] && 
-	    $reg->[1] == $this->{rows}->[$row]) {
-	    $region = $reg;
-	    last;
-	}
+        my $reg = $this->{frames}->[$i];
+        if ($reg->[0] == $this->{cols}->[$col] && 
+            $reg->[1] == $this->{rows}->[$row]) {
+            $region = $reg;
+            last;
+        }
     }
+
+    $this->{svg} =~ s/<rect\b[^<>]*?fill\s*=\s*\"none\".*?>//sg;
+
     $this->{svg} =~ s/<\s*path\s/<PATH /g;
     while ($this->{svg} =~ s/(<\s*PATH\b[^>]*>)/_select_path($1,$region,$blshift)/se) {
 	;
@@ -98,12 +101,11 @@ sub clip {
     while ($this->{svg} =~ s/(<\s*POLYGON\b[^>]*>)/_select_poly($1,$region,$blshift)/se) {
 	;
     }
-    $this->{svg} =~ s/<\s*rect\s([^>l]*\/>)/<RECT $1/g; 	# without 'fill="none"'
+    $this->{svg} =~ s/<\s*rect\s([^>]*\/>)/<RECT $1/g; 	# without 'fill="none"'
     while ($this->{svg} =~ s/(<\s*RECT\b[^>]*>)/_select_rect($1,$region,$blshift)/se) {
 	;
     }
     $this->{svg} = _set_region($this->{svg}, $region->[2], $region->[3]);
-    $this->{svg} =~ s/<rect\b[^<>]*?fill\s*=\s*\"none\".*?>//sg;
 
     return $this;
 }
@@ -221,7 +223,7 @@ sub _get_property {
     }
 }
 
-# frame (�ɤ�Ĥ֤��Τʤ� rect) �ΰ��������
+# frame (ÅÉ¤ê¤Ä¤Ö¤·¤Î¤Ê¤¤ rect) ¤Î°ìÍ÷¤ò³ÍÆÀ
 sub _get_frames {
     my @rectangles;
     my $svg = $_[0];
@@ -234,7 +236,7 @@ sub _get_frames {
 		     _get_property($rect, "height"));
 	push(@rectangles, \@array);
     }
-    # ���񤭽�˥�����
+    # ²£½ñ¤­½ç¤Ë¥½¡¼¥È
     return sort { $a->[0] <=> $b->[0] || $b->[1] <=> $a->[1] } @rectangles;
 }
 
