@@ -105,6 +105,10 @@ sub clip {
     while ($this->{svg} =~ s/(<\s*RECT\b[^>]*>)/_select_rect($1,$region,$blshift)/se) {
 	;
     }
+    $this->{svg} =~ s/<\s*circle\s([^>]*\/>)/<CIRCLE $1/g;
+    while ($this->{svg} =~ s/(<\s*CIRCLE\b[^>]*>)/_select_circle($1,$region,$blshift)/se) {
+    ;
+    }
     $this->{svg} = _set_region($this->{svg}, $region->[2], $region->[3]);
 
     return $this;
@@ -324,6 +328,40 @@ sub _select_rect {
 	} else {
 	    return "<!-- out of boundary -->";
 	}
+    }
+    return "<!-- no match -->";
+}
+
+sub _select_circle {
+    my ($circle, $region, $blshift) = @_;
+    my ($minx, $miny, $maxx, $maxy) = ($region->[0], $region->[1],
+                       $region->[0] + $region->[2],
+                       $region->[1] + $region->[3]);
+    if ($circle =~ m/<\s*CIRCLE\b[^>]*>/s) {
+    my $x = _get_property($circle, "cx");
+    my $y = _get_property($circle, "cy");
+    my ($X, $Y) = ($x, $y);
+    my $trans = _get_property($circle, "transform");
+    my @tmat;
+    if (defined $trans) {
+        $trans =~ s/matrix\((.*)\)/$1/;
+        @tmat = split / /, $trans;
+        ($X, $Y) = _transform($x, $y, @tmat);
+    }
+    if ($minx <= $X && $X <= $maxx && $miny <= $Y && $Y <= $maxy) {
+        my $r = _get_property($circle, "r");
+        if (!defined $trans) {
+        $x -= $minx;
+        $y -= $miny + $blshift;
+        return "<circle cx=\"$x\" cy=\"$y\" r=\"$r\" />";
+        } else {
+        $tmat[4] -= $minx;
+        $tmat[5] -= $miny + $blshift;
+        return "<cirlce cx=\"$x\" cy=\"$y\" r=\"$r\"  transform=\"matrix(@tmat)\"/>";
+        }
+    } else {
+        return "<!-- out of boundary -->";
+    }
     }
     return "<!-- no match -->";
 }
