@@ -6,6 +6,8 @@ import psMat
 import fontforge
 import config
 
+fontforge.loadPrefs()
+
 ttfname = sys.argv[1]
 fontname, weight = os.path.splitext(ttfname)[0].rsplit('-', 1)
 modules = sys.argv[2:]
