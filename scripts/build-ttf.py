@@ -271,7 +271,9 @@ def set_fontnames():
         ('English (US)', 'Version', 'Version %s' % config.version),
         ('English (US)', 'PostScriptName', '%s-%s' % (fontname, weight)),
         ('English (US)', 'Vendor URL', 'http://mplus-fonts.sourceforge.jp'),
+        ('Japanese', 'Preferred Family', family),
         ('English (US)', 'Preferred Family', family),
+        ('Japanese', 'Preferred Styles', weight),
         ('English (US)', 'Preferred Styles', weight),)
 
 def set_os2_value():
