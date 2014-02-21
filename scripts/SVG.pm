@@ -351,13 +351,36 @@ sub _select_circle {
     if ($minx <= $X && $X <= $maxx && $miny <= $Y && $Y <= $maxy) {
         my $r = _get_property($circle, "r");
         if (!defined $trans) {
-        $x -= $minx;
-        $y -= $miny + $blshift;
-        return "<circle cx=\"$x\" cy=\"$y\" r=\"$r\" />";
+            $x -= $minx;
+            $y -= $miny + $blshift;
+
+			# Convert <circle> to <path>
+            # http://stackoverflow.com/questions/5737975/circle-drawing-with-svgs-arc-path/1047733
+            my $rmin    = -($r);
+            my $rdbl    =  ($r * 2);
+            my $rdblmin = -($r * 2);
+            my $pathd = "";
+            $pathd .= "M$x,$y";
+            $pathd .= "m$rmin,0";
+            $pathd .= "a$r,$r 0 1,1 $rdbl,0";
+            $pathd .= "a$r,$r 0 1,1 $rdblmin,0";
+            return "<path d=\"$pathd\"/>";
+            # return "<circle cx=\"$x\" cy=\"$y\" r=\"$r\" />";
         } else {
-        $tmat[4] -= $minx;
-        $tmat[5] -= $miny + $blshift;
-        return "<cirlce cx=\"$x\" cy=\"$y\" r=\"$r\"  transform=\"matrix(@tmat)\"/>";
+            $tmat[4] -= $minx;
+            $tmat[5] -= $miny + $blshift;
+
+			# Convert <circle> to <path>
+            my $rmin    = -($r);
+            my $rdbl    =  ($r * 2);
+            my $rdblmin = -($r * 2);
+            my $pathd = "";
+            $pathd .= "M$x,$y";
+            $pathd .= "m$rmin,0";
+            $pathd .= "a$r,$r 0 1,1 $rdbl,0";
+            $pathd .= "a$r,$r 0 1,1 $rdblmin,0";
+            return "<path d=\"$pathd\" transform=\"matrix(@tmat)\"/>";
+            # return "<cirlce cx=\"$x\" cy=\"$y\" r=\"$r\"  transform=\"matrix(@tmat)\"/>";
         }
     } else {
         return "<!-- out of boundary -->";
