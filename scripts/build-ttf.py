@@ -6,7 +6,7 @@ import psMat
 import fontforge
 import config
 
-fontforge.loadPrefs()
+fontforge.setPrefs('CoverageFormatsAllowed', 1)
 
 ttfname = sys.argv[1]
 fontname, weight = os.path.splitext(ttfname)[0].rsplit('-', 1)

@@ -1,6 +1,6 @@
 #!/usr/local/bin/fontforge -script
 
-LoadPrefs()
+SetPrefs("CoverageFormatsAllowed", 1)
 
 $trace = 0
 
