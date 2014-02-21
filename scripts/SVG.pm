@@ -354,7 +354,7 @@ sub _select_circle {
             $x -= $minx;
             $y -= $miny + $blshift;
 
-			# Convert <circle> to <path>
+            # Convert <circle> to <path>
             # http://stackoverflow.com/questions/5737975/circle-drawing-with-svgs-arc-path/1047733
             my $rmin    = -($r);
             my $rdbl    =  ($r * 2);
@@ -370,7 +370,7 @@ sub _select_circle {
             $tmat[4] -= $minx;
             $tmat[5] -= $miny + $blshift;
 
-			# Convert <circle> to <path>
+            # Convert <circle> to <path>
             my $rmin    = -($r);
             my $rdbl    =  ($r * 2);
             my $rdblmin = -($r * 2);
