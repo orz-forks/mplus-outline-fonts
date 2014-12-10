@@ -1,2 +1,2 @@
 year = "2014"
-version = "1.058"
+version = "1.059"
